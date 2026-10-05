@@ -1,0 +1,85 @@
+{
+  "id": "character-hero",
+  "name": "Hero",
+  "type": "character",
+  "description": "Main or supporting hero with powers, hero identity, and optional costume.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Name": "",
+    "Age": "",
+    "HeroName": "",
+    "SecretIdentity": "",
+    "Role": "",
+    "Group": "",
+    "SchoolClass": "",
+    "PowerSystem": "",
+    "Costume": "",
+    "CostumePhase": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Name": {
+      "type": "text",
+      "required": true
+    },
+    "Age": {
+      "type": "number"
+    },
+    "SecretIdentity": {
+      "type": "select",
+      "options": [
+        "yes",
+        "no",
+        "undecided"
+      ]
+    },
+    "Role": {
+      "type": "select",
+      "options": [
+        "Protagonist",
+        "Main Hero",
+        "Supporting Hero"
+      ]
+    },
+    "Group": {
+      "type": "link",
+      "targetTypes": ["organization"]
+    },
+    "PowerSystem": {
+      "type": "link",
+      "targetTypes": ["power"]
+    },
+    "Costume": {
+      "type": "link",
+      "targetTypes": ["item", "visual"]
+    },
+    "CostumePhase": {
+      "type": "select",
+      "options": [
+        "none",
+        "planned",
+        "equipped",
+        "damaged",
+        "lost"
+      ]
+    }
+  },
+  "contextFields": [
+    "Group",
+    "PowerSystem",
+    "Costume"
+  ],
+  "defaultTags": [
+    "character",
+    "hero"
+  ],
+  "defaultContent": "## Character Core\n\n## Everyday Life & Personality\n\n## Discovery of Powers\n\n## Powers & Limitations\n\n## Hero Identity & Costume\n\n## Role in Group\n\n## Key Relationships\n\n## Plot Role\n\n## Secrets\n\n## Open Questions"
+}

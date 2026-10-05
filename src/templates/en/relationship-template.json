@@ -1,0 +1,93 @@
+{
+  "id": "relationship-template",
+  "name": "Relationship",
+  "type": "relationship",
+  "description": "Detailed dossier for a narratively important relationship between two characters.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "PersonA": "",
+    "PersonB": "",
+    "RelationshipType": "Friendship",
+    "RelationshipStatus": "stable",
+    "Dynamics": "",
+    "ConflictLevel": "low",
+    "DevelopmentArc": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "PersonA": {
+      "type": "link",
+      "targetTypes": ["character"]
+    },
+    "PersonB": {
+      "type": "link",
+      "targetTypes": ["character"]
+    },
+    "RelationshipType": {
+      "type": "select",
+      "options": [
+        "Friendship",
+        "Family",
+        "Romance",
+        "Rivalry",
+        "Enmity",
+        "Acquaintance",
+        "Mentorship"
+      ]
+    },
+    "RelationshipStatus": {
+      "type": "select",
+      "options": [
+        "close",
+        "stable",
+        "tense",
+        "distant",
+        "broken",
+        "fluctuating"
+      ]
+    },
+    "Dynamics": {
+      "type": "multiselect",
+      "options": [
+        "complementary",
+        "protective",
+        "trusting",
+        "conflictual",
+        "competing",
+        "dependent",
+        "suspicious",
+        "unequal"
+      ]
+    },
+    "ConflictLevel": {
+      "type": "select",
+      "options": [
+        "none",
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "DevelopmentArc": {
+      "type": "link",
+      "targetTypes": ["storyline"]
+    }
+  },
+  "contextFields": [
+    "PersonA",
+    "PersonB",
+    "DevelopmentArc"
+  ],
+  "defaultTags": [
+    "relationship"
+  ],
+  "defaultContent": "## Overview\n\n## Origin of Relationship\n\n## Dynamics\n\n## Conflicts & Tensions\n\n## Development\n\n## Key Events\n\n## Open Questions"
+}

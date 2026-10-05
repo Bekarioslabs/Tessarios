@@ -1,0 +1,40 @@
+{
+  "id": "power-template",
+  "name": "Kraftsystem",
+  "type": "power",
+  "description": "Übergeordnetes oder individuelles Kraftsystem mit Ursprung, Regeln, Grenzen und Entwicklung.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Betroffene/Träger": "",
+    "Grundsystem": "",
+    "Eissorte": "",
+    "Kraftbereich": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Betroffene/Träger": {
+      "type": "multilink",
+      "targetTypes": ["character", "organization"]
+    },
+    "Grundsystem": {
+      "type": "link",
+      "targetTypes": ["power"]
+    }
+  },
+  "contextFields": [
+    "Betroffene/Träger",
+    "Grundsystem"
+  ],
+  "defaultTags": [
+    "power"
+  ],
+  "defaultContent": "## Überblick\n\n## Ursprung & Entstehung\n\n## Fähigkeiten\n\n## Auslösung & Kontrolle\n\n## Grenzen & Kosten\n\n## Erste Manifestation\n\n## Entwicklung\n\n## Wechselwirkungen\n\n## Sonderregeln & Ausnahmen\n\n## Offene Fragen"
+}

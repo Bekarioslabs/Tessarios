@@ -1,0 +1,71 @@
+{
+  "id": "scene-template",
+  "name": "Szene",
+  "type": "scene",
+  "description": "Konkrete Handlungseinheit eines Kapitels. Enthält Planung, Kontinuität und als letzten Abschnitt den Manuskripttext.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Kapitel": "",
+    "Szenennummer": "1",
+    "Status": "Planung",
+    "Perspektive": "",
+    "Hauptschauplatz": "",
+    "Beteiligte Figuren": "",
+    "Zeitpunkt": "",
+    "Wortziel": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Kapitel": {
+      "type": "link",
+      "targetTypes": ["chapter"]
+    },
+    "Szenennummer": {
+      "type": "number"
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "Planung",
+        "Entwurf",
+        "In Bearbeitung",
+        "In Überarbeitung",
+        "Fertig",
+        "Pausiert"
+      ]
+    },
+    "Perspektive": {
+      "type": "link",
+      "targetTypes": ["character"]
+    },
+    "Hauptschauplatz": {
+      "type": "link",
+      "targetTypes": ["place"]
+    },
+    "Beteiligte Figuren": {
+      "type": "multilink",
+      "targetTypes": ["character"]
+    },
+    "Wortziel": {
+      "type": "number"
+    }
+  },
+  "contextFields": [
+    "Kapitel",
+    "Perspektive",
+    "Hauptschauplatz",
+    "Beteiligte Figuren"
+  ],
+  "defaultTags": [
+    "scene"
+  ],
+  "defaultContent": "## Überblick\n\n## Szenenfunktion\n\n## Ausgangslage\n\n## Ziel der Figur\n\n## Konflikt\n\n## Szenenablauf\n\n## Ergebnis & Folgen\n\n## Kontinuität\n\n## Offene Fragen\n\n## Manuskript"
+}

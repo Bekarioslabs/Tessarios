@@ -1,0 +1,105 @@
+{
+  "id": "organization-template",
+  "name": "Organization",
+  "type": "organization",
+  "description": "Organization, group, faction, institute, authority, or team with structure, members, and sphere of influence.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "OrganizationType": "Team",
+    "Status": "active",
+    "Structure": "informal",
+    "Leadership": "",
+    "Headquarters": "",
+    "Members": "",
+    "SphereOfInfluence": "local",
+    "Visibility": "public"
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "OrganizationType": {
+      "type": "select",
+      "options": [
+        "Team",
+        "Family",
+        "Club",
+        "Institute",
+        "Authority",
+        "Company",
+        "Research Team",
+        "Secret Society",
+        "School Group",
+        "Faction",
+        "Other"
+      ]
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "forming",
+        "active",
+        "inactive",
+        "divided",
+        "disbanded"
+      ]
+    },
+    "Structure": {
+      "type": "select",
+      "options": [
+        "informal",
+        "hierarchical",
+        "democratic",
+        "decentralized",
+        "family-style"
+      ]
+    },
+    "Leadership": {
+      "type": "link",
+      "targetTypes": ["character"]
+    },
+    "Headquarters": {
+      "type": "link",
+      "targetTypes": ["place"]
+    },
+    "Members": {
+      "type": "multilink",
+      "targetTypes": ["character"]
+    },
+    "SphereOfInfluence": {
+      "type": "select",
+      "options": [
+        "School",
+        "District",
+        "local",
+        "regional",
+        "national",
+        "global"
+      ]
+    },
+    "Visibility": {
+      "type": "select",
+      "options": [
+        "unknown",
+        "secret",
+        "partially known",
+        "public"
+      ]
+    }
+  },
+  "contextFields": [
+    "Leadership",
+    "Headquarters",
+    "Members"
+  ],
+  "defaultTags": [
+    "organization"
+  ],
+  "defaultContent": "## Overview\n\n## Origin\n\n## Goals & Interests\n\n## Members & Roles\n\n## Structure & Decision Making\n\n## Culture & Group Dynamics\n\n## Headquarters & Resources\n\n## Allies & Rivals\n\n## Reputation & Influence\n\n## Plot Role\n\n## Secrets\n\n## Open Questions"
+}

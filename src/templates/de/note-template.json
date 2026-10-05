@@ -1,0 +1,98 @@
+{
+  "id": "note-template",
+  "name": "Arbeitsnotiz",
+  "type": "note",
+  "description": "Flexible Arbeitsnotiz für Ideen, Fragen, Probleme, Recherche und Entscheidungen.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Notiztyp": "Idee",
+    "Status": "offen",
+    "Bereich": "Handlung",
+    "Priorität": "mittel",
+    "Buch": "",
+    "Ziel": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Notiztyp": {
+      "type": "select",
+      "options": [
+        "Idee",
+        "Frage",
+        "Problem",
+        "Recherche",
+        "Variante",
+        "Entscheidung",
+        "Erinnerung"
+      ]
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "offen",
+        "prüfen",
+        "angenommen",
+        "abgelehnt",
+        "integriert",
+        "archiviert"
+      ]
+    },
+    "Bereich": {
+      "type": "select",
+      "options": [
+        "Handlung",
+        "Figur",
+        "Beziehung",
+        "Kraft",
+        "Ort",
+        "Lore",
+        "Dialog",
+        "Visual",
+        "Produktion"
+      ]
+    },
+    "Priorität": {
+      "type": "select",
+      "options": [
+        "niedrig",
+        "mittel",
+        "hoch"
+      ]
+    },
+    "Buch": {
+      "type": "link",
+      "targetTypes": ["book"]
+    },
+    "Ziel": {
+      "type": "link",
+      "targetTypes": [
+        "book",
+        "chapter",
+        "scene",
+        "character",
+        "place",
+        "organization",
+        "power",
+        "lore",
+        "item",
+        "visual"
+      ]
+    }
+  },
+  "contextFields": [
+    "Buch",
+    "Ziel"
+  ],
+  "defaultTags": [
+    "note"
+  ],
+  "defaultContent": "## Inhalt\n\n## Überlegungen\n\n## Entscheidung / Ergebnis\n\n## Integration"
+}

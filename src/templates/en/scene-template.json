@@ -1,0 +1,71 @@
+{
+  "id": "scene-template",
+  "name": "Scene",
+  "type": "scene",
+  "description": "Concrete action unit of a chapter. Contains planning, continuity, and the manuscript text as the final section.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Chapter": "",
+    "SceneNumber": "1",
+    "Status": "Planning",
+    "POV": "",
+    "PrimarySetting": "",
+    "ParticipatingCharacters": "",
+    "Timeframe": "",
+    "WordGoal": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Chapter": {
+      "type": "link",
+      "targetTypes": ["chapter"]
+    },
+    "SceneNumber": {
+      "type": "number"
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "Planning",
+        "Draft",
+        "In Progress",
+        "Revising",
+        "Completed",
+        "Paused"
+      ]
+    },
+    "POV": {
+      "type": "link",
+      "targetTypes": ["character"]
+    },
+    "PrimarySetting": {
+      "type": "link",
+      "targetTypes": ["place"]
+    },
+    "ParticipatingCharacters": {
+      "type": "multilink",
+      "targetTypes": ["character"]
+    },
+    "WordGoal": {
+      "type": "number"
+    }
+  },
+  "contextFields": [
+    "Chapter",
+    "POV",
+    "PrimarySetting",
+    "ParticipatingCharacters"
+  ],
+  "defaultTags": [
+    "scene"
+  ],
+  "defaultContent": "## Overview\n\n## Scene Function\n\n## Starting Situation\n\n## Character Goal\n\n## Conflict\n\n## Scene Progression\n\n## Outcome & Consequences\n\n## Continuity\n\n## Open Questions\n\n## Manuscript"
+}

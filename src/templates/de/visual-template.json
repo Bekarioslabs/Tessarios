@@ -1,0 +1,69 @@
+{
+  "id": "visual-template",
+  "name": "Visual Design & Prompting",
+  "type": "visual",
+  "description": "Visuelle Definition und Prompt-Testakte für Charaktere, Kostüme, Schauplätze oder Gegenstände.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Visualtyp": "Charakter",
+    "Bezugsobjekt": "",
+    "Asset-ID": "",
+    "Designstatus": "Konzept",
+    "Workflow": "",
+    "Modell/Checkpoint": "",
+    "LoRA": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Visualtyp": {
+      "type": "select",
+      "options": [
+        "Charakter",
+        "Kostüm",
+        "Ort",
+        "Gegenstand",
+        "Styleguide",
+        "Prompt-Test",
+        "Workflow"
+      ]
+    },
+    "Bezugsobjekt": {
+      "type": "link",
+      "targetTypes": [
+        "character",
+        "place",
+        "item"
+      ]
+    },
+    "Designstatus": {
+      "type": "select",
+      "options": [
+        "Konzept",
+        "Test",
+        "Arbeitsstand",
+        "Festgelegt",
+        "Final"
+      ]
+    },
+    "Workflow": {
+      "type": "link",
+      "targetTypes": ["visual"]
+    }
+  },
+  "contextFields": [
+    "Bezugsobjekt",
+    "Workflow"
+  ],
+  "defaultTags": [
+    "visual"
+  ],
+  "defaultContent": "## Visuelles Ziel\n\n## Verbindliche Merkmale\n\n## Form & Silhouette\n\n## Farben & Materialien\n\n## Kostümteile & Details\n\n## Variable Merkmale\n\n## Referenzbilder\n\n## Basis-Prompt\n\n## Negative / Vermeiden\n\n## Prompt-Tests\n\n### Test 01\n\n**Ziel:**\n<!-- Was soll dieser Test prüfen? -->\n\n**Prompt:**\n```text\nPrompt hier\n```\n\n**Negative Prompt:**\n```text\nNegative Prompt hier\n```\n\n**Einstellungen:**\n- Modell:\n- LoRA:\n- Seed:\n- Steps:\n- CFG:\n- Auflösung:\n\n**Ergebnis:**\n<!-- Bild einbetten -->\n\n**Bewertung:**\n<!-- Was funktioniert? Was nicht? -->\n\n**Übernehmen:**\n<!-- Welche Erkenntnisse fließen in den Basis-Prompt ein? -->\n\n## Aktueller Produktions-Prompt\n\n## Bekannte Probleme\n\n## Produktionshinweise\n\n## Offene Fragen"
+}

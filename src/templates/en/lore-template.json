@@ -1,0 +1,69 @@
+{
+  "id": "lore-template",
+  "name": "Lore",
+  "type": "lore",
+  "description": "World knowledge, rules, events, and background details affecting multiple characters or areas.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "LoreType": "World Rule",
+    "CanonStatus": "provisional",
+    "Timeframe": "",
+    "Setting": "",
+    "Participants": "",
+    "AssociatedSystem": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "LoreType": {
+      "type": "select",
+      "options": [
+        "World Rule",
+        "Event",
+        "Origin",
+        "Phenomenon",
+        "History",
+        "Science",
+        "Myth"
+      ]
+    },
+    "CanonStatus": {
+      "type": "select",
+      "options": [
+        "established canon",
+        "provisional",
+        "legend",
+        "unknown",
+        "contradictory"
+      ]
+    },
+    "Setting": {
+      "type": "link",
+      "targetTypes": ["place"]
+    },
+    "Participants": {
+      "type": "multilink",
+      "targetTypes": ["character", "organization"]
+    },
+    "AssociatedSystem": {
+      "type": "link",
+      "targetTypes": ["power", "lore"]
+    }
+  },
+  "contextFields": [
+    "Setting",
+    "Participants",
+    "AssociatedSystem"
+  ],
+  "defaultTags": [
+    "lore"
+  ],
+  "defaultContent": "## Overview\n\n## Origin & Background\n\n## Progression or Mechanism\n\n## Rules & Limits\n\n## Consequences & Effects\n\n## Knowledge Within the World\n\n## Plot Role\n\n## Secrets & Revelations\n\n## Open Questions"
+}

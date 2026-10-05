@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Border Gradient -->
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D2FF" />
+      <stop offset="50%" stop-color="#0072FF" />
+      <stop offset="100%" stop-color="#0040E0" />
+    </linearGradient>
+
+    <!-- Card Background Radial Gradient (Light Mode) -->
+    <radialGradient id="cardBgLight" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="70%" stop-color="#E2E8F0" />
+      <stop offset="100%" stop-color="#CBD5E1" />
+    </radialGradient>
+
+    <!-- T Left/Main Gradient -->
+    <linearGradient id="tGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00C8FF" />
+      <stop offset="60%" stop-color="#0080FF" />
+      <stop offset="100%" stop-color="#0050E6" />
+    </linearGradient>
+
+    <!-- T Right Shading Gradient -->
+    <linearGradient id="tShade" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0090E6" />
+      <stop offset="100%" stop-color="#003DB3" />
+    </linearGradient>
+
+    <!-- Node Central Gradient -->
+    <radialGradient id="nodeCenter" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C084FC" />
+      <stop offset="100%" stop-color="#7E22CE" />
+    </radialGradient>
+
+    <!-- Node Spoke Gradient -->
+    <linearGradient id="spokeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#C084FC" />
+    </linearGradient>
+
+    <!-- Outer Nodes Gradients -->
+    <radialGradient id="nodeTop" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#60A5FA" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </radialGradient>
+    
+    <radialGradient id="nodeTopRight" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#818CF8" />
+      <stop offset="100%" stop-color="#4F46E5" />
+    </radialGradient>
+
+    <radialGradient id="nodeRight" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C084FC" />
+      <stop offset="100%" stop-color="#9333EA" />
+    </radialGradient>
+
+    <radialGradient id="nodeBottomRight" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E081F9" />
+      <stop offset="100%" stop-color="#C026D3" />
+    </radialGradient>
+
+    <radialGradient id="nodeBottom" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F472B6" />
+      <stop offset="100%" stop-color="#DB2777" />
+    </radialGradient>
+
+    <!-- Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Card (Light Mode Soft Silver Radial Fill) -->
+  <rect x="16" y="16" width="480" height="480" rx="105" fill="url(#cardBgLight)" stroke="url(#borderGrad)" stroke-width="14" />
+
+  <!-- The "T" Letter (Serif Style matching image) -->
+  <g id="letterT">
+    <!-- Left half / main face of T -->
+    <path d="
+      M 78 82
+      L 428 82
+      C 428 82, 428 132, 412 132
+      C 396 132, 388 106, 360 106
+      L 282 106
+      L 282 414
+      C 282 432, 298 438, 306 438
+      L 306 450
+      L 200 450
+      L 200 438
+      C 212 438, 226 432, 226 414
+      L 226 106
+      L 152 106
+      C 124 106, 116 132, 100 132
+      C 84 132, 78 82, 78 82
+      Z
+    " fill="url(#tGrad)" />
+
+    <!-- Right-hand subtle shadow line along center vertical bar of T for 3D bevel effect -->
+    <path d="
+      M 254 106
+      L 282 106
+      L 282 414
+      C 282 432, 298 438, 306 438
+      L 306 450
+      L 254 450
+      L 254 106
+      Z
+    " fill="url(#tShade)" opacity="0.45" />
+  </g>
+
+  <!-- Constellation / Graph Network -->
+  <g id="nodeGraph">
+    <!-- Spoke Lines connecting central node (315, 360) to surrounding nodes -->
+    <line x1="315" y1="360" x2="322" y2="304" stroke="url(#spokeGrad)" stroke-width="5" stroke-linecap="round" />
+    <line x1="315" y1="360" x2="362" y2="328" stroke="url(#spokeGrad)" stroke-width="5" stroke-linecap="round" />
+    <line x1="315" y1="360" x2="360" y2="368" stroke="url(#spokeGrad)" stroke-width="5" stroke-linecap="round" />
+    <line x1="315" y1="360" x2="350" y2="410" stroke="url(#spokeGrad)" stroke-width="5" stroke-linecap="round" />
+    <line x1="315" y1="360" x2="304" y2="420" stroke="url(#spokeGrad)" stroke-width="5" stroke-linecap="round" />
+
+    <!-- Outer Nodes -->
+    <circle cx="322" cy="304" r="13" fill="url(#nodeTop)" />
+    <circle cx="362" cy="328" r="11" fill="url(#nodeTopRight)" />
+    <circle cx="360" cy="368" r="12" fill="url(#nodeRight)" />
+    <circle cx="350" cy="410" r="17" fill="url(#nodeBottomRight)" />
+    <circle cx="304" cy="420" r="14" fill="url(#nodeBottom)" />
+
+    <!-- Central Purple Node -->
+    <circle cx="315" cy="360" r="23" fill="url(#nodeCenter)" filter="url(#glow)" />
+  </g>
+</svg>

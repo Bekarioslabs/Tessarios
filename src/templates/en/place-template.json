@@ -1,0 +1,84 @@
+{
+  "id": "place-template",
+  "name": "Location",
+  "type": "place",
+  "description": "Setting or spatial area with location, usage, access, and relationships.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "LocationType": "Building",
+    "Status": "active",
+    "Location": "",
+    "OwnerUsers": "",
+    "Access": "",
+    "Visibility": "public",
+    "ParentLocation": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "LocationType": {
+      "type": "select",
+      "options": [
+        "City",
+        "District",
+        "Building",
+        "School",
+        "Residence",
+        "Hideout",
+        "Natural Area",
+        "Outdoor Area",
+        "Indoor Area",
+        "Facility",
+        "Other"
+      ]
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "active",
+        "abandoned",
+        "destroyed",
+        "inaccessible",
+        "unknown"
+      ]
+    },
+    "Location": {
+      "type": "link",
+      "targetTypes": ["place"]
+    },
+    "OwnerUsers": {
+      "type": "multilink",
+      "targetTypes": ["character", "organization"]
+    },
+    "Visibility": {
+      "type": "select",
+      "options": [
+        "public",
+        "private",
+        "hidden",
+        "secret",
+        "unknown"
+      ]
+    },
+    "ParentLocation": {
+      "type": "link",
+      "targetTypes": ["place"]
+    }
+  },
+  "contextFields": [
+    "Location",
+    "ParentLocation",
+    "OwnerUsers"
+  ],
+  "defaultTags": [
+    "place"
+  ],
+  "defaultContent": "## Overview\n\n## Location & Environment\n\n## Access\n\n## Layout & Areas\n\n## Features & Equipment\n\n## Usage & Daily Routine\n\n## Atmosphere\n\n## History\n\n## Secrets & Hazards\n\n## Plot Role\n\n## Visual References\n\n## Open Questions"
+}

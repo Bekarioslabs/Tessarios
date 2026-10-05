@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TESSARIOS</title>
+    <style>
+      :root {
+        --bg: #09090b;
+        --border: #27272a;
+        --text: #e4e4e7;
+        --muted: #71717a;
+        --accent: #6366f1;
+        --danger: #f43f5e;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        height: 100%;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        -webkit-user-select: none;
+        user-select: none;
+        overflow: hidden;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px;
+      }
+      .panel {
+        width: 100%;
+        max-width: 560px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        text-align: center;
+      }
+      .wordmark {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.42em;
+        text-indent: 0.42em;
+        color: var(--text);
+      }
+      .spinner {
+        width: 26px;
+        height: 26px;
+        border: 2px solid var(--border);
+        border-top-color: var(--accent);
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .status {
+        font-size: 11px;
+        color: var(--muted);
+        min-height: 1.2em;
+      }
+      /* ---- error state ---- */
+      .badge {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        border: 1px solid rgba(244, 63, 94, 0.4);
+        background: rgba(244, 63, 94, 0.1);
+        color: var(--danger);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        line-height: 1;
+      }
+      .title {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .detail {
+        width: 100%;
+        max-height: 260px;
+        overflow: auto;
+        text-align: left;
+        white-space: pre-wrap;
+        word-break: break-word;
+        font-size: 10.5px;
+        line-height: 1.7;
+        color: var(--muted);
+        background: #0d0d12;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 14px 16px;
+        -webkit-user-select: text;
+        user-select: text;
+      }
+      button {
+        font: inherit;
+        font-size: 11px;
+        font-weight: 600;
+        color: #fff;
+        background: #4f46e5;
+        border: none;
+        border-radius: 8px;
+        padding: 9px 18px;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      button:hover { background: #6366f1; }
+      [hidden] { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <div class="panel">
+      <!-- loading state -->
+      <div id="loading" class="panel">
+        <div class="wordmark">TESSARIOS</div>
+        <div class="spinner"></div>
+        <div id="status" class="status">Starte…</div>
+      </div>
+
+      <!-- error state -->
+      <div id="error" class="panel" hidden>
+        <div class="badge">!</div>
+        <div id="error-title" class="title"></div>
+        <div id="error-detail" class="detail"></div>
+        <button id="retry" type="button">Erneut versuchen</button>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var loading = document.getElementById('loading');
+        var error = document.getElementById('error');
+        var status = document.getElementById('status');
+
+        // Driven from the main process while it waits for the dev server, so a slow
+        // start is visibly *progressing* rather than indistinguishable from a hang.
+        window.__shell = {
+          setStatus: function (text) {
+            status.textContent = text;
+          },
+        };
+
+        var params = new URLSearchParams(location.search);
+        if (params.get('state') === 'error') {
+          document.getElementById('error-title').textContent =
+            params.get('title') || 'Start fehlgeschlagen';
+          document.getElementById('error-detail').textContent = params.get('detail') || '';
+          loading.hidden = true;
+          error.hidden = false;
+        }
+
+        document.getElementById('retry').addEventListener('click', function () {
+          document.getElementById('retry').disabled = true;
+          if (window.appShell && window.appShell.retry) window.appShell.retry();
+        });
+      })();
+    </script>
+  </body>
+</html>

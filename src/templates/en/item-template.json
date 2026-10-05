@@ -1,0 +1,76 @@
+{
+  "id": "item-template",
+  "name": "Item",
+  "type": "item",
+  "description": "Important item, equipment, weapon, device, or artifact with narrative or functional significance.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "ItemType": "Device",
+    "OwnerUsers": "",
+    "ManufacturerCreator": "",
+    "Origin": "",
+    "Material": "",
+    "Status": "equipped",
+    "StorageLocation": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "ItemType": {
+      "type": "select",
+      "options": [
+        "Weapon",
+        "Costume",
+        "Tool",
+        "Device",
+        "Artifact",
+        "Sample",
+        "Vehicle",
+        "Other"
+      ]
+    },
+    "OwnerUsers": {
+      "type": "multilink",
+      "targetTypes": ["character", "organization"]
+    },
+    "ManufacturerCreator": {
+      "type": "link",
+      "targetTypes": ["character", "organization"]
+    },
+    "Origin": {
+      "type": "link",
+      "targetTypes": ["place", "lore", "organization"]
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "planned",
+        "equipped",
+        "damaged",
+        "lost",
+        "destroyed"
+      ]
+    },
+    "StorageLocation": {
+      "type": "link",
+      "targetTypes": ["place"]
+    }
+  },
+  "contextFields": [
+    "OwnerUsers",
+    "ManufacturerCreator",
+    "Origin",
+    "StorageLocation"
+  ],
+  "defaultTags": [
+    "item"
+  ],
+  "defaultContent": "## Overview\n\n## Appearance & Composition\n\n## Origin & Creation\n\n## Functions & Uses\n\n## Limits & Vulnerabilities\n\n## Handling & Operation\n\n## Storage\n\n## Plot Role\n\n## Visual References\n\n## Open Questions"
+}

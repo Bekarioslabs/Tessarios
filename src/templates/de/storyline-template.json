@@ -1,0 +1,77 @@
+{
+  "id": "storyline-template",
+  "name": "Storyline / Chronik",
+  "type": "storyline",
+  "description": "Zeitlicher oder dramaturgischer Verlauf eines zusammenhängenden Handlungs-, Figuren- oder Entwicklungsstrangs.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Storylinetyp": "Handlung",
+    "Status": "Planung",
+    "Reihe": "",
+    "Bücher": "",
+    "Hauptfiguren": "",
+    "Priorität": "mittel"
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Storylinetyp": {
+      "type": "select",
+      "options": [
+        "Handlung",
+        "Figurenentwicklung",
+        "Beziehung",
+        "Antagonist",
+        "Mysterium",
+        "Lore",
+        "Kraftentwicklung"
+      ]
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "Planung",
+        "Aktiv",
+        "In Überarbeitung",
+        "Abgeschlossen",
+        "Pausiert"
+      ]
+    },
+    "Reihe": {
+      "type": "link",
+      "targetTypes": ["storyline"]
+    },
+    "Bücher": {
+      "type": "multilink",
+      "targetTypes": ["book"]
+    },
+    "Hauptfiguren": {
+      "type": "multilink",
+      "targetTypes": ["character"]
+    },
+    "Priorität": {
+      "type": "select",
+      "options": [
+        "niedrig",
+        "mittel",
+        "hoch"
+      ]
+    }
+  },
+  "contextFields": [
+    "Reihe",
+    "Bücher",
+    "Hauptfiguren"
+  ],
+  "defaultTags": [
+    "storyline"
+  ],
+  "defaultContent": "## Überblick\n\n## Ausgangspunkt\n\n## Verlauf\n\n### Phase 1\n\n### Phase 2\n\n### Phase 3\n\n## Schlüsselereignisse\n\n## Ziel / Auflösung\n\n## Offene Fragen"
+}

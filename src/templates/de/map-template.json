@@ -1,0 +1,82 @@
+{
+  "id": "map-template",
+  "name": "Karte",
+  "type": "map",
+  "description": "Räumliche Übersicht mit Kartenbild, Markern, Ortsverknüpfungen und geografischen Zusammenhängen.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Kartentyp": "Stadtkarte",
+    "Gebiet": "",
+    "Kartenstatus": "Arbeitsstand",
+    "Maßstab": "schematisch",
+    "Ausrichtung": "Norden",
+    "Kartenbild": "",
+    "Markerbild": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Kartentyp": {
+      "type": "select",
+      "options": [
+        "Weltkarte",
+        "Regionalkarte",
+        "Stadtkarte",
+        "Stadtteilkarte",
+        "Geländeplan",
+        "Gebäudeplan",
+        "Raumplan"
+      ]
+    },
+    "Gebiet": {
+      "type": "link",
+      "targetTypes": ["place"]
+    },
+    "Kartenstatus": {
+      "type": "select",
+      "options": [
+        "Konzept",
+        "Arbeitsstand",
+        "Festgelegt",
+        "Final"
+      ]
+    },
+    "Maßstab": {
+      "type": "select",
+      "options": [
+        "schematisch",
+        "annähernd",
+        "maßstäblich",
+        "unbekannt"
+      ]
+    },
+    "Ausrichtung": {
+      "type": "select",
+      "options": [
+        "Norden",
+        "frei",
+        "unbekannt"
+      ]
+    },
+    "Kartenbild": {
+      "type": "readonly"
+    },
+    "Markerbild": {
+      "type": "readonly"
+    }
+  },
+  "contextFields": [
+    "Gebiet"
+  ],
+  "defaultTags": [
+    "map"
+  ],
+  "defaultContent": "## Überblick\n\n## Kartenansicht\n\n### Interaktive Grundlage\n\n<!-- Basis-Kartenbild ohne Marker -->\n\n### Karte mit Markern\n\n<!-- Gerenderte Vorschau-Karte mit eingebrannten Markern -->\n\n## Geografische Struktur\n\n## Marker & Orte\n\n## Wege & Entfernungen\n\n## Legende\n\n## Offene Fragen"
+}

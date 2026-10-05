@@ -1,0 +1,40 @@
+{
+  "id": "power-template",
+  "name": "Power System",
+  "type": "power",
+  "description": "Overarching or individual power system with origin, rules, limitations, and progression.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Bearers": "",
+    "BaseSystem": "",
+    "CatalystFlavor": "",
+    "PowerDomain": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Bearers": {
+      "type": "multilink",
+      "targetTypes": ["character", "organization"]
+    },
+    "BaseSystem": {
+      "type": "link",
+      "targetTypes": ["power"]
+    }
+  },
+  "contextFields": [
+    "Bearers",
+    "BaseSystem"
+  ],
+  "defaultTags": [
+    "power"
+  ],
+  "defaultContent": "## Overview\n\n## Origin & Creation\n\n## Abilities\n\n## Activation & Control\n\n## Limits & Costs\n\n## First Manifestation\n\n## Progression\n\n## Interactions\n\n## Special Rules & Exceptions\n\n## Open Questions"
+}

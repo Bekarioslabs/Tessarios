@@ -1,0 +1,54 @@
+{
+  "name": "react-example",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "electron .",
+    "clean": "rm -rf dist release",
+    "lint": "tsc --noEmit",
+    "predev": "node scripts/dev-preflight.cjs 5173",
+    "electron:dev": "node scripts/dev-preflight.cjs 5173 && concurrently -k \"npm run dev\" \"cross-env NODE_ENV=development electron .\"",
+    "electron:build": "vite build && electron-builder",
+    "check:rules": "node scripts/check-rules.cjs",
+    "licenses": "node scripts/generate-third-party-notices.cjs",
+    "check": "tsc --noEmit && vite build && node scripts/check-rules.cjs && npm test",
+    "test": "tsx src/ai/engine/__tests__/runTests.ts"
+  },
+  "build": {
+    "appId": "com.bekarios.tessarios",
+    "directories": {
+      "output": "release"
+    }
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "d3": "^7.9.0",
+    "jszip": "^3.10.1",
+    "lucide-react": "^0.546.0",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1"
+  },
+  "devDependencies": {
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@types/d3": "^7.4.3",
+    "@types/jszip": "^3.4.1",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^10.0.4",
+    "cross-env": "^10.1.0",
+    "electron": "^43.3.0",
+    "electron-builder": "^26.15.3",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.3"
+  }
+}

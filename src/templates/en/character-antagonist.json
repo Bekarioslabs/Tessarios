@@ -1,0 +1,88 @@
+{
+  "id": "character-antagonist",
+  "name": "Antagonist",
+  "type": "character",
+  "description": "Adversary with distinct motivation, resources, and role in conflict.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Age": "",
+    "Alias": "",
+    "ProfessionFunction": "",
+    "AntagonistRole": "Main Antagonist",
+    "Organization": "",
+    "BaseLocation": "",
+    "Adversaries": "",
+    "ThreatType": "",
+    "KnowledgeLevel": "unknown",
+    "DevelopmentArc": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Age": {
+      "type": "number"
+    },
+    "AntagonistRole": {
+      "type": "select",
+      "options": [
+        "Main Antagonist",
+        "Secondary Antagonist",
+        "Rival"
+      ]
+    },
+    "Organization": {
+      "type": "link",
+      "targetTypes": ["organization"]
+    },
+    "BaseLocation": {
+      "type": "link",
+      "targetTypes": ["place"]
+    },
+    "Adversaries": {
+      "type": "multilink",
+      "targetTypes": ["character", "organization"]
+    },
+    "ThreatType": {
+      "type": "multiselect",
+      "options": [
+        "scientific",
+        "physical",
+        "social",
+        "political",
+        "psychological",
+        "supernatural"
+      ]
+    },
+    "KnowledgeLevel": {
+      "type": "select",
+      "options": [
+        "unknown",
+        "suspicion",
+        "partial knowledge",
+        "comprehensive"
+      ]
+    },
+    "DevelopmentArc": {
+      "type": "link",
+      "targetTypes": ["storyline"]
+    }
+  },
+  "contextFields": [
+    "Organization",
+    "BaseLocation",
+    "Adversaries",
+    "DevelopmentArc"
+  ],
+  "defaultTags": [
+    "character",
+    "antagonist"
+  ],
+  "defaultContent": "## Character Core\n\n## Public Persona & Appearance\n\n## Goals & Motivation\n\n## Methods & Resources\n\n## Knowledge of Events\n\n## Relationship to Adversaries\n\n## Threat & Escalation\n\n## Weaknesses & Limits\n\n## Secrets\n\n## Character Arc in Plot\n\n## Open Questions"
+}

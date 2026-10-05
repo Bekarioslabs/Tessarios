@@ -1,0 +1,93 @@
+{
+  "id": "relationship-template",
+  "name": "Beziehung",
+  "type": "relationship",
+  "description": "Ausführliches Dossier für eine erzählerisch wichtige Beziehung zwischen zwei Figuren.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Person A": "",
+    "Person B": "",
+    "Beziehungstyp": "Freundschaft",
+    "Beziehungsstatus": "stabil",
+    "Dynamik": "",
+    "Konfliktgrad": "niedrig",
+    "Entwicklungsbogen": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Person A": {
+      "type": "link",
+      "targetTypes": ["character"]
+    },
+    "Person B": {
+      "type": "link",
+      "targetTypes": ["character"]
+    },
+    "Beziehungstyp": {
+      "type": "select",
+      "options": [
+        "Freundschaft",
+        "Familie",
+        "Partnerschaft",
+        "Rivalität",
+        "Feindschaft",
+        "Bekanntschaft",
+        "Mentorenschaft"
+      ]
+    },
+    "Beziehungsstatus": {
+      "type": "select",
+      "options": [
+        "eng",
+        "stabil",
+        "angespannt",
+        "distanziert",
+        "zerbrochen",
+        "wechselhaft"
+      ]
+    },
+    "Dynamik": {
+      "type": "multiselect",
+      "options": [
+        "ergänzend",
+        "beschützend",
+        "vertrauensvoll",
+        "konfliktreich",
+        "konkurrierend",
+        "abhängig",
+        "misstrauisch",
+        "ungleich"
+      ]
+    },
+    "Konfliktgrad": {
+      "type": "select",
+      "options": [
+        "keiner",
+        "niedrig",
+        "mittel",
+        "hoch"
+      ]
+    },
+    "Entwicklungsbogen": {
+      "type": "link",
+      "targetTypes": ["storyline"]
+    }
+  },
+  "contextFields": [
+    "Person A",
+    "Person B",
+    "Entwicklungsbogen"
+  ],
+  "defaultTags": [
+    "relationship"
+  ],
+  "defaultContent": "## Überblick\n\n## Ursprung der Beziehung\n\n## Dynamik\n\n## Konflikte & Spannungen\n\n## Entwicklung\n\n## Schlüsselereignisse\n\n## Offene Fragen"
+}

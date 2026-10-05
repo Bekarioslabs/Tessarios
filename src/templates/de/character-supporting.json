@@ -1,0 +1,62 @@
+{
+  "id": "character-supporting",
+  "name": "Nebencharakter",
+  "type": "character",
+  "description": "Zivile Nebenfigur wie Elternteil, Lehrer, Mitschüler, Nachbar oder andere Alltagsfigur.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Alter": "",
+    "Rolle": "",
+    "Beruf/Funktion": "",
+    "Wohnort": "",
+    "Bezugsperson": "",
+    "Familie/Gruppe": "",
+    "Wissensstand": "unwissend"
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Alter": {
+      "type": "number"
+    },
+    "Wohnort": {
+      "type": "link",
+      "targetTypes": ["place"]
+    },
+    "Bezugsperson": {
+      "type": "link",
+      "targetTypes": ["character"]
+    },
+    "Familie/Gruppe": {
+      "type": "link",
+      "targetTypes": ["organization"]
+    },
+    "Wissensstand": {
+      "type": "select",
+      "options": [
+        "unwissend",
+        "ahnungslos",
+        "misstrauisch",
+        "Teilwissen",
+        "eingeweiht"
+      ]
+    }
+  },
+  "contextFields": [
+    "Wohnort",
+    "Bezugsperson",
+    "Familie/Gruppe"
+  ],
+  "defaultTags": [
+    "character",
+    "supporting"
+  ],
+  "defaultContent": "## Charakterkern\n\n## Alltag & Persönlichkeit\n\n## Beziehung zu wichtigen Figuren\n\n## Rolle im Alltag\n\n## Rolle in der Handlung\n\n## Wissen über die Ereignisse\n\n## Konflikte & Entwicklung\n\n## Offene Fragen"
+}

@@ -1,0 +1,99 @@
+{
+  "id": "book-template",
+  "name": "Buch",
+  "type": "book",
+  "description": "Zentrale Übersicht eines Buches mit Prämisse, Konflikt, Handlungsbogen und Kapitelindex.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Reihe": "",
+    "Bandnummer": "1",
+    "Arbeitstitel": "",
+    "Status": "Planung",
+    "Format": "Kinderroman",
+    "Zielgruppe": "9–12",
+    "Genre": "",
+    "Hauptfiguren": "",
+    "Kapitelzahl": "",
+    "Wortziel": "35000"
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Reihe": {
+      "type": "link",
+      "targetTypes": ["storyline"]
+    },
+    "Bandnummer": {
+      "type": "number"
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "Planung",
+        "Entwurf",
+        "In Bearbeitung",
+        "In Überarbeitung",
+        "Fertig",
+        "Pausiert"
+      ]
+    },
+    "Format": {
+      "type": "select",
+      "options": [
+        "Kinderroman",
+        "Roman",
+        "Comic",
+        "Graphic Novel",
+        "Novelle"
+      ]
+    },
+    "Zielgruppe": {
+      "type": "select",
+      "options": [
+        "6–8",
+        "8–10",
+        "9–12",
+        "12–14",
+        "Young Adult",
+        "All Age"
+      ]
+    },
+    "Genre": {
+      "type": "multiselect",
+      "options": [
+        "Abenteuer",
+        "Fantasy",
+        "Science-Fiction",
+        "Superhelden",
+        "Mystery",
+        "Krimi",
+        "Coming-of-Age"
+      ]
+    },
+    "Hauptfiguren": {
+      "type": "multilink",
+      "targetTypes": ["character"]
+    },
+    "Kapitelzahl": {
+      "type": "number"
+    },
+    "Wortziel": {
+      "type": "number"
+    }
+  },
+  "contextFields": [
+    "Reihe",
+    "Hauptfiguren"
+  ],
+  "defaultTags": [
+    "book"
+  ],
+  "defaultContent": "## Überblick & Prämisse\n\n## Zentrale Fragen & Konflikt\n\n## Figurenfokus\n\n## Handlungsbogen\n\n### Anfang\n\n### Mittelteil\n\n### Finale\n\n## Kapitelübersicht\n\n## Offene Fragen"
+}

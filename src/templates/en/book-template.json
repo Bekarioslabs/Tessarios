@@ -1,0 +1,99 @@
+{
+  "id": "book-template",
+  "name": "Book",
+  "type": "book",
+  "description": "Central overview of a book including premise, conflict, story arc, and chapter index.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Series": "",
+    "VolumeNumber": "1",
+    "WorkingTitle": "",
+    "Status": "Planning",
+    "Format": "Children's Novel",
+    "TargetAudience": "9–12",
+    "Genre": "",
+    "MainCharacters": "",
+    "ChapterCount": "",
+    "WordGoal": "35000"
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Series": {
+      "type": "link",
+      "targetTypes": ["storyline"]
+    },
+    "VolumeNumber": {
+      "type": "number"
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "Planning",
+        "Draft",
+        "In Progress",
+        "Revising",
+        "Completed",
+        "Paused"
+      ]
+    },
+    "Format": {
+      "type": "select",
+      "options": [
+        "Children's Novel",
+        "Novel",
+        "Comic",
+        "Graphic Novel",
+        "Novella"
+      ]
+    },
+    "TargetAudience": {
+      "type": "select",
+      "options": [
+        "6–8",
+        "8–10",
+        "9–12",
+        "12–14",
+        "Young Adult",
+        "All Age"
+      ]
+    },
+    "Genre": {
+      "type": "multiselect",
+      "options": [
+        "Adventure",
+        "Fantasy",
+        "Science Fiction",
+        "Superhero",
+        "Mystery",
+        "Crime",
+        "Coming-of-Age"
+      ]
+    },
+    "MainCharacters": {
+      "type": "multilink",
+      "targetTypes": ["character"]
+    },
+    "ChapterCount": {
+      "type": "number"
+    },
+    "WordGoal": {
+      "type": "number"
+    }
+  },
+  "contextFields": [
+    "Series",
+    "MainCharacters"
+  ],
+  "defaultTags": [
+    "book"
+  ],
+  "defaultContent": "## Overview & Premise\n\n## Central Questions & Conflict\n\n## Character Focus\n\n## Story Arc\n\n### Beginning\n\n### Middle\n\n### Climax & Ending\n\n## Chapter Index\n\n## Open Questions"
+}

@@ -1,0 +1,105 @@
+{
+  "id": "organization-template",
+  "name": "Organisation",
+  "type": "organization",
+  "description": "Organisation, Gruppe, Fraktion, Institut, Behörde oder Team mit Struktur, Mitgliedern und Einflussbereich.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Organisationstyp": "Team",
+    "Status": "aktiv",
+    "Struktur": "informell",
+    "Leitung": "",
+    "Hauptquartier": "",
+    "Mitglieder": "",
+    "Einflussbereich": "lokal",
+    "Sichtbarkeit": "öffentlich"
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Organisationstyp": {
+      "type": "select",
+      "options": [
+        "Team",
+        "Familie",
+        "Verein",
+        "Institut",
+        "Behörde",
+        "Unternehmen",
+        "Forschungsteam",
+        "Geheimbund",
+        "Schulgruppe",
+        "Fraktion",
+        "Sonstiges"
+      ]
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "in Gründung",
+        "aktiv",
+        "inaktiv",
+        "zerstritten",
+        "aufgelöst"
+      ]
+    },
+    "Struktur": {
+      "type": "select",
+      "options": [
+        "informell",
+        "hierarchisch",
+        "demokratisch",
+        "dezentral",
+        "familiär"
+      ]
+    },
+    "Leitung": {
+      "type": "link",
+      "targetTypes": ["character"]
+    },
+    "Hauptquartier": {
+      "type": "link",
+      "targetTypes": ["place"]
+    },
+    "Mitglieder": {
+      "type": "multilink",
+      "targetTypes": ["character"]
+    },
+    "Einflussbereich": {
+      "type": "select",
+      "options": [
+        "Schule",
+        "Stadtteil",
+        "lokal",
+        "regional",
+        "national",
+        "global"
+      ]
+    },
+    "Sichtbarkeit": {
+      "type": "select",
+      "options": [
+        "unbekannt",
+        "geheim",
+        "teilweise bekannt",
+        "öffentlich"
+      ]
+    }
+  },
+  "contextFields": [
+    "Leitung",
+    "Hauptquartier",
+    "Mitglieder"
+  ],
+  "defaultTags": [
+    "organization"
+  ],
+  "defaultContent": "## Überblick\n\n## Entstehung\n\n## Ziele & Interessen\n\n## Mitglieder & Rollen\n\n## Struktur & Entscheidungen\n\n## Kultur & Gruppendynamik\n\n## Hauptquartier & Ressourcen\n\n## Verbündete & Gegner\n\n## Ruf & Einfluss\n\n## Rolle in der Handlung\n\n## Geheimnisse\n\n## Offene Fragen"
+}

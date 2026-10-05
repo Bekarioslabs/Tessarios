@@ -1,0 +1,28 @@
+# Dependencies and build output
+node_modules/
+dist/
+build/
+release/
+coverage/
+*.tsbuildinfo
+
+# Environment — nothing in the app reads one today, but never commit it if that changes
+.env*
+!.env.example
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# Local agent settings
+.claude/
+
+# A vault is data, not source. The repo root has been opened as a vault during
+# development, which makes the app write its working files here: personal overrides
+# (PROJECT.md, SOUL.md), drafts, backups. None of it belongs in version control.
+/.tessarios/
+.tessarios/backups/
+.tessarios/full-backups/

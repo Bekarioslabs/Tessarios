@@ -1,0 +1,82 @@
+{
+  "id": "map-template",
+  "name": "Map",
+  "type": "map",
+  "description": "Spatial overview with map image, markers, location links, and geographical relationships.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "MapType": "City Map",
+    "Area": "",
+    "MapStatus": "Work in Progress",
+    "Scale": "schematic",
+    "Orientation": "North",
+    "BaseMapImage": "",
+    "MarkerMapImage": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "MapType": {
+      "type": "select",
+      "options": [
+        "World Map",
+        "Regional Map",
+        "City Map",
+        "District Map",
+        "Site Plan",
+        "Building Plan",
+        "Floor Plan"
+      ]
+    },
+    "Area": {
+      "type": "link",
+      "targetTypes": ["place"]
+    },
+    "MapStatus": {
+      "type": "select",
+      "options": [
+        "Concept",
+        "Work in Progress",
+        "Established",
+        "Final"
+      ]
+    },
+    "Scale": {
+      "type": "select",
+      "options": [
+        "schematic",
+        "approximate",
+        "to scale",
+        "unknown"
+      ]
+    },
+    "Orientation": {
+      "type": "select",
+      "options": [
+        "North",
+        "free",
+        "unknown"
+      ]
+    },
+    "BaseMapImage": {
+      "type": "readonly"
+    },
+    "MarkerMapImage": {
+      "type": "readonly"
+    }
+  },
+  "contextFields": [
+    "Area"
+  ],
+  "defaultTags": [
+    "map"
+  ],
+  "defaultContent": "## Overview\n\n## Map View\n\n### Interactive Foundation\n\n<!-- Base map image without markers -->\n\n### Map with Baked Markers\n\n<!-- Rendered preview map image with baked markers -->\n\n## Geographical Structure\n\n## Markers & Locations\n\n## Routes & Distances\n\n## Legend\n\n## Open Questions"
+}

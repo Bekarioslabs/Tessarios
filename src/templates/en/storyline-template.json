@@ -1,0 +1,77 @@
+{
+  "id": "storyline-template",
+  "name": "Storyline / Chronicle",
+  "type": "storyline",
+  "description": "Chronological or dramatic progression of a connected plot, character, or development arc.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "StorylineType": "Plot",
+    "Status": "Planning",
+    "Series": "",
+    "Books": "",
+    "MainCharacters": "",
+    "Priority": "Medium"
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "StorylineType": {
+      "type": "select",
+      "options": [
+        "Plot",
+        "Character Arc",
+        "Relationship",
+        "Antagonist",
+        "Mystery",
+        "Lore",
+        "Power Development"
+      ]
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "Planning",
+        "Active",
+        "Revising",
+        "Completed",
+        "Paused"
+      ]
+    },
+    "Series": {
+      "type": "link",
+      "targetTypes": ["storyline"]
+    },
+    "Books": {
+      "type": "multilink",
+      "targetTypes": ["book"]
+    },
+    "MainCharacters": {
+      "type": "multilink",
+      "targetTypes": ["character"]
+    },
+    "Priority": {
+      "type": "select",
+      "options": [
+        "Low",
+        "Medium",
+        "High"
+      ]
+    }
+  },
+  "contextFields": [
+    "Series",
+    "Books",
+    "MainCharacters"
+  ],
+  "defaultTags": [
+    "storyline"
+  ],
+  "defaultContent": "## Overview\n\n## Starting Point\n\n## Progression\n\n### Phase 1\n\n### Phase 2\n\n### Phase 3\n\n## Key Events\n\n## Resolution / Climax\n\n## Open Questions"
+}

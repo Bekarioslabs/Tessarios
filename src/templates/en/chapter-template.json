@@ -1,0 +1,71 @@
+{
+  "id": "chapter-template",
+  "name": "Chapter",
+  "type": "chapter",
+  "description": "Planning unit of a book with dramatic function, character focus, and scene index.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Book": "",
+    "ChapterNumber": "1",
+    "Status": "Planning",
+    "POV": "",
+    "PrimarySetting": "",
+    "ParticipatingCharacters": "",
+    "Timeframe": "",
+    "WordGoal": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Book": {
+      "type": "link",
+      "targetTypes": ["book"]
+    },
+    "ChapterNumber": {
+      "type": "number"
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "Planning",
+        "Draft",
+        "In Progress",
+        "Revising",
+        "Completed",
+        "Paused"
+      ]
+    },
+    "POV": {
+      "type": "link",
+      "targetTypes": ["character"]
+    },
+    "PrimarySetting": {
+      "type": "link",
+      "targetTypes": ["place"]
+    },
+    "ParticipatingCharacters": {
+      "type": "multilink",
+      "targetTypes": ["character"]
+    },
+    "WordGoal": {
+      "type": "number"
+    }
+  },
+  "contextFields": [
+    "Book",
+    "POV",
+    "PrimarySetting",
+    "ParticipatingCharacters"
+  ],
+  "defaultTags": [
+    "chapter"
+  ],
+  "defaultContent": "## Overview\n\n## Chapter Function\n\n## Character Focus\n\n## Chapter Conflict\n\n## Progression\n\n## Turning Point\n\n## Outcome & Transition\n\n## Scene Index\n\n## Open Questions"
+}

@@ -1,0 +1,62 @@
+{
+  "id": "character-supporting",
+  "name": "Supporting Character",
+  "type": "character",
+  "description": "Civilian supporting character such as parent, teacher, classmate, neighbor, or everyday figure.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Age": "",
+    "Role": "",
+    "ProfessionFunction": "",
+    "Residence": "",
+    "KeyContact": "",
+    "FamilyGroup": "",
+    "KnowledgeLevel": "unaware"
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Age": {
+      "type": "number"
+    },
+    "Residence": {
+      "type": "link",
+      "targetTypes": ["place"]
+    },
+    "KeyContact": {
+      "type": "link",
+      "targetTypes": ["character"]
+    },
+    "FamilyGroup": {
+      "type": "link",
+      "targetTypes": ["organization"]
+    },
+    "KnowledgeLevel": {
+      "type": "select",
+      "options": [
+        "unaware",
+        "clueless",
+        "suspicious",
+        "partial knowledge",
+        "fully informed"
+      ]
+    }
+  },
+  "contextFields": [
+    "Residence",
+    "KeyContact",
+    "FamilyGroup"
+  ],
+  "defaultTags": [
+    "character",
+    "supporting"
+  ],
+  "defaultContent": "## Character Core\n\n## Everyday Life & Personality\n\n## Relationship to Key Characters\n\n## Everyday Role\n\n## Plot Role\n\n## Knowledge of Events\n\n## Conflicts & Development\n\n## Open Questions"
+}

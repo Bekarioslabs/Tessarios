@@ -1,0 +1,76 @@
+{
+  "id": "item-template",
+  "name": "Gegenstand",
+  "type": "item",
+  "description": "Wichtiger Gegenstand, Ausrüstung, Waffe, Gerät oder Artefakt mit erzählerischer oder funktionaler Bedeutung.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Gegenstandstyp": "Gerät",
+    "Besitzer/Nutzer": "",
+    "Hersteller/Erfinder": "",
+    "Herkunft": "",
+    "Material": "",
+    "Status": "vorhanden",
+    "Aufbewahrungsort": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Gegenstandstyp": {
+      "type": "select",
+      "options": [
+        "Waffe",
+        "Kostüm",
+        "Werkzeug",
+        "Gerät",
+        "Artefakt",
+        "Probe",
+        "Fahrzeug",
+        "Sonstiges"
+      ]
+    },
+    "Besitzer/Nutzer": {
+      "type": "multilink",
+      "targetTypes": ["character", "organization"]
+    },
+    "Hersteller/Erfinder": {
+      "type": "link",
+      "targetTypes": ["character", "organization"]
+    },
+    "Herkunft": {
+      "type": "link",
+      "targetTypes": ["place", "lore", "organization"]
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "geplant",
+        "vorhanden",
+        "beschädigt",
+        "verloren",
+        "zerstört"
+      ]
+    },
+    "Aufbewahrungsort": {
+      "type": "link",
+      "targetTypes": ["place"]
+    }
+  },
+  "contextFields": [
+    "Besitzer/Nutzer",
+    "Hersteller/Erfinder",
+    "Herkunft",
+    "Aufbewahrungsort"
+  ],
+  "defaultTags": [
+    "item"
+  ],
+  "defaultContent": "## Überblick\n\n## Aussehen & Beschaffenheit\n\n## Herkunft & Herstellung\n\n## Funktionen & Einsatz\n\n## Grenzen & Schwachstellen\n\n## Nutzung & Handhabung\n\n## Aufbewahrung\n\n## Rolle in der Handlung\n\n## Visuelle Referenzen\n\n## Offene Fragen"
+}

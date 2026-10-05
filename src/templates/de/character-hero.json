@@ -1,0 +1,85 @@
+{
+  "id": "character-hero",
+  "name": "Held",
+  "type": "character",
+  "description": "Haupt- oder Nebenheld mit Kräften, Heldenidentität und optionalem Kostüm.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Name": "",
+    "Alter": "",
+    "Heldenname": "",
+    "Geheime Identität": "",
+    "Rolle": "",
+    "Gruppe": "",
+    "Schule/Klasse": "",
+    "Kraftsystem": "",
+    "Kostüm": "",
+    "Kostümphase": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Name": {
+      "type": "text",
+      "required": true
+    },
+    "Alter": {
+      "type": "number"
+    },
+    "Geheime Identität": {
+      "type": "select",
+      "options": [
+        "ja",
+        "nein",
+        "offen"
+      ]
+    },
+    "Rolle": {
+      "type": "select",
+      "options": [
+        "Protagonist",
+        "Hauptheld",
+        "Nebenheld"
+      ]
+    },
+    "Gruppe": {
+      "type": "link",
+      "targetTypes": ["organization"]
+    },
+    "Kraftsystem": {
+      "type": "link",
+      "targetTypes": ["power"]
+    },
+    "Kostüm": {
+      "type": "link",
+      "targetTypes": ["item", "visual"]
+    },
+    "Kostümphase": {
+      "type": "select",
+      "options": [
+        "keins",
+        "geplant",
+        "vorhanden",
+        "beschädigt",
+        "verloren"
+      ]
+    }
+  },
+  "contextFields": [
+    "Gruppe",
+    "Kraftsystem",
+    "Kostüm"
+  ],
+  "defaultTags": [
+    "character",
+    "hero"
+  ],
+  "defaultContent": "## Charakterkern\n\n## Alltag & Persönlichkeit\n\n## Entdeckung der Kräfte\n\n## Kräfte & Grenzen\n\n## Heldenidentität & Kostüm\n\n## Rolle in der Gruppe\n\n## Wichtige Beziehungen\n\n## Rolle in der Handlung\n\n## Geheimnisse\n\n## Offene Fragen"
+}

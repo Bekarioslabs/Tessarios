@@ -1,0 +1,84 @@
+{
+  "id": "place-template",
+  "name": "Ort",
+  "type": "place",
+  "description": "Schauplatz oder räumlicher Bereich mit Lage, Nutzung, Zugang und Verknüpfungen.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Ortstyp": "Gebäude",
+    "Status": "aktiv",
+    "Standort": "",
+    "Besitzer/Nutzer": "",
+    "Zugang": "",
+    "Sichtbarkeit": "öffentlich",
+    "Übergeordneter Ort": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Ortstyp": {
+      "type": "select",
+      "options": [
+        "Stadt",
+        "Stadtteil",
+        "Gebäude",
+        "Schule",
+        "Wohnort",
+        "Versteck",
+        "Naturgebiet",
+        "Außenbereich",
+        "Innenraum",
+        "Anlage",
+        "Sonstiges"
+      ]
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "aktiv",
+        "verlassen",
+        "zerstört",
+        "unzugänglich",
+        "unbekannt"
+      ]
+    },
+    "Standort": {
+      "type": "link",
+      "targetTypes": ["place"]
+    },
+    "Besitzer/Nutzer": {
+      "type": "multilink",
+      "targetTypes": ["character", "organization"]
+    },
+    "Sichtbarkeit": {
+      "type": "select",
+      "options": [
+        "öffentlich",
+        "privat",
+        "versteckt",
+        "geheim",
+        "unbekannt"
+      ]
+    },
+    "Übergeordneter Ort": {
+      "type": "link",
+      "targetTypes": ["place"]
+    }
+  },
+  "contextFields": [
+    "Standort",
+    "Übergeordneter Ort",
+    "Besitzer/Nutzer"
+  ],
+  "defaultTags": [
+    "place"
+  ],
+  "defaultContent": "## Überblick\n\n## Lage & Umgebung\n\n## Zugang\n\n## Aufbau & Bereiche\n\n## Ausstattung\n\n## Nutzung & Alltag\n\n## Atmosphäre\n\n## Geschichte\n\n## Geheimnisse & Gefahren\n\n## Rolle in der Handlung\n\n## Visuelle Referenzen\n\n## Offene Fragen"
+}

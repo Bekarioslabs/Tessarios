@@ -1,0 +1,88 @@
+{
+  "id": "character-antagonist",
+  "name": "Antagonist",
+  "type": "character",
+  "description": "Gegenspieler mit eigener Motivation, Ressourcen und Rolle im Konflikt.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Alter": "",
+    "Alias": "",
+    "Beruf/Funktion": "",
+    "Antagonistenrolle": "Hauptantagonist",
+    "Organisation": "",
+    "Basis/Ort": "",
+    "Gegenspieler": "",
+    "Bedrohungsart": "",
+    "Wissensstand": "unbekannt",
+    "Entwicklungsbogen": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Alter": {
+      "type": "number"
+    },
+    "Antagonistenrolle": {
+      "type": "select",
+      "options": [
+        "Hauptantagonist",
+        "Nebenantagonist",
+        "Rivale"
+      ]
+    },
+    "Organisation": {
+      "type": "link",
+      "targetTypes": ["organization"]
+    },
+    "Basis/Ort": {
+      "type": "link",
+      "targetTypes": ["place"]
+    },
+    "Gegenspieler": {
+      "type": "multilink",
+      "targetTypes": ["character", "organization"]
+    },
+    "Bedrohungsart": {
+      "type": "multiselect",
+      "options": [
+        "wissenschaftlich",
+        "körperlich",
+        "sozial",
+        "politisch",
+        "psychologisch",
+        "übernatürlich"
+      ]
+    },
+    "Wissensstand": {
+      "type": "select",
+      "options": [
+        "unbekannt",
+        "Verdacht",
+        "Teilwissen",
+        "umfassend"
+      ]
+    },
+    "Entwicklungsbogen": {
+      "type": "link",
+      "targetTypes": ["storyline"]
+    }
+  },
+  "contextFields": [
+    "Organisation",
+    "Basis/Ort",
+    "Gegenspieler",
+    "Entwicklungsbogen"
+  ],
+  "defaultTags": [
+    "character",
+    "antagonist"
+  ],
+  "defaultContent": "## Charakterkern\n\n## Öffentliche Rolle & Auftreten\n\n## Ziele & Motivation\n\n## Methoden & Ressourcen\n\n## Wissen über die Ereignisse\n\n## Beziehung zu den Gegenspielern\n\n## Bedrohung & Eskalation\n\n## Schwächen & Grenzen\n\n## Geheimnisse\n\n## Entwicklung in der Handlung\n\n## Offene Fragen"
+}

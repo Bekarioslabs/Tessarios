@@ -1,0 +1,98 @@
+{
+  "id": "note-template",
+  "name": "Working Note",
+  "type": "note",
+  "description": "Flexible working note for ideas, questions, problems, research, and decisions.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "NoteType": "Idea",
+    "Status": "Open",
+    "Category": "Plot",
+    "Priority": "Medium",
+    "Book": "",
+    "Target": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "NoteType": {
+      "type": "select",
+      "options": [
+        "Idea",
+        "Question",
+        "Problem",
+        "Research",
+        "Variant",
+        "Decision",
+        "Reminder"
+      ]
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "Open",
+        "Review",
+        "Accepted",
+        "Rejected",
+        "Integrated",
+        "Archived"
+      ]
+    },
+    "Category": {
+      "type": "select",
+      "options": [
+        "Plot",
+        "Character",
+        "Relationship",
+        "Power",
+        "Location",
+        "Lore",
+        "Dialogue",
+        "Visual",
+        "Production"
+      ]
+    },
+    "Priority": {
+      "type": "select",
+      "options": [
+        "Low",
+        "Medium",
+        "High"
+      ]
+    },
+    "Book": {
+      "type": "link",
+      "targetTypes": ["book"]
+    },
+    "Target": {
+      "type": "link",
+      "targetTypes": [
+        "book",
+        "chapter",
+        "scene",
+        "character",
+        "place",
+        "organization",
+        "power",
+        "lore",
+        "item",
+        "visual"
+      ]
+    }
+  },
+  "contextFields": [
+    "Book",
+    "Target"
+  ],
+  "defaultTags": [
+    "note"
+  ],
+  "defaultContent": "## Content\n\n## Considerations\n\n## Decision / Result\n\n## Integration"
+}

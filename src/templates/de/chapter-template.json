@@ -1,0 +1,71 @@
+{
+  "id": "chapter-template",
+  "name": "Kapitel",
+  "type": "chapter",
+  "description": "Planungseinheit eines Buches mit dramaturgischer Funktion, Figurenfokus und Szenenübersicht.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Buch": "",
+    "Kapitelnummer": "1",
+    "Status": "Planung",
+    "Perspektive": "",
+    "Hauptschauplatz": "",
+    "Beteiligte Figuren": "",
+    "Zeitpunkt": "",
+    "Wortziel": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Buch": {
+      "type": "link",
+      "targetTypes": ["book"]
+    },
+    "Kapitelnummer": {
+      "type": "number"
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "Planung",
+        "Entwurf",
+        "In Bearbeitung",
+        "In Überarbeitung",
+        "Fertig",
+        "Pausiert"
+      ]
+    },
+    "Perspektive": {
+      "type": "link",
+      "targetTypes": ["character"]
+    },
+    "Hauptschauplatz": {
+      "type": "link",
+      "targetTypes": ["place"]
+    },
+    "Beteiligte Figuren": {
+      "type": "multilink",
+      "targetTypes": ["character"]
+    },
+    "Wortziel": {
+      "type": "number"
+    }
+  },
+  "contextFields": [
+    "Buch",
+    "Perspektive",
+    "Hauptschauplatz",
+    "Beteiligte Figuren"
+  ],
+  "defaultTags": [
+    "chapter"
+  ],
+  "defaultContent": "## Überblick\n\n## Funktion des Kapitels\n\n## Figurenfokus\n\n## Kapitelkonflikt\n\n## Kapitelablauf\n\n## Wendepunkt\n\n## Ergebnis & Übergang\n\n## Szenenübersicht\n\n## Offene Fragen"
+}

@@ -1,0 +1,69 @@
+{
+  "id": "visual-template",
+  "name": "Visual Design & Prompting",
+  "type": "visual",
+  "description": "Visual definition and prompt testing file for characters, costumes, locations, or items.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "VisualType": "Character",
+    "TargetObject": "",
+    "AssetID": "",
+    "DesignStatus": "Concept",
+    "Workflow": "",
+    "ModelCheckpoint": "",
+    "LoRA": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "VisualType": {
+      "type": "select",
+      "options": [
+        "Character",
+        "Costume",
+        "Location",
+        "Item",
+        "Styleguide",
+        "Prompt Test",
+        "Workflow"
+      ]
+    },
+    "TargetObject": {
+      "type": "link",
+      "targetTypes": [
+        "character",
+        "place",
+        "item"
+      ]
+    },
+    "DesignStatus": {
+      "type": "select",
+      "options": [
+        "Concept",
+        "Test",
+        "Work in Progress",
+        "Established",
+        "Final"
+      ]
+    },
+    "Workflow": {
+      "type": "link",
+      "targetTypes": ["visual"]
+    }
+  },
+  "contextFields": [
+    "TargetObject",
+    "Workflow"
+  ],
+  "defaultTags": [
+    "visual"
+  ],
+  "defaultContent": "## Visual Goal\n\n## Mandatory Features\n\n## Form & Silhouette\n\n## Colors & Materials\n\n## Costume Parts & Details\n\n## Variable Features\n\n## Reference Images\n\n## Base Prompt\n\n## Negative / Avoid\n\n## Prompt Tests\n\n### Test 01\n\n**Goal:**\n<!-- What is this test testing? -->\n\n**Prompt:**\n```text\nPrompt here\n```\n\n**Negative Prompt:**\n```text\nNegative Prompt here\n```\n\n**Settings:**\n- Model:\n- LoRA:\n- Seed:\n- Steps:\n- CFG:\n- Resolution:\n\n**Result:**\n<!-- Embed image -->\n\n**Evaluation:**\n<!-- What works? What doesn't? -->\n\n**Apply Insights:**\n<!-- Which findings feed back into the base prompt? -->\n\n## Current Production Prompt\n\n## Known Issues\n\n## Production Notes\n\n## Open Questions"
+}

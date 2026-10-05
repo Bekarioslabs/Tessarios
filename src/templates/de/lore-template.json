@@ -1,0 +1,69 @@
+{
+  "id": "lore-template",
+  "name": "Lore",
+  "type": "lore",
+  "description": "Weltenwissen, Regeln, Ereignisse und Hintergründe, die mehrere Figuren oder Bereiche betreffen.",
+  "defaultFields": {
+    "created": "",
+    "lastModified": "",
+    "Loretyp": "Weltenregel",
+    "Kanonstatus": "vorläufig",
+    "Zeitraum": "",
+    "Schauplatz": "",
+    "Beteiligte": "",
+    "Zugehöriges System": ""
+  },
+  "fieldConfig": {
+    "created": {
+      "type": "date",
+      "readonly": true
+    },
+    "lastModified": {
+      "type": "date",
+      "readonly": true
+    },
+    "Loretyp": {
+      "type": "select",
+      "options": [
+        "Weltenregel",
+        "Ereignis",
+        "Ursprung",
+        "Phänomen",
+        "Geschichte",
+        "Wissenschaft",
+        "Mythos"
+      ]
+    },
+    "Kanonstatus": {
+      "type": "select",
+      "options": [
+        "gesetzter Kanon",
+        "vorläufig",
+        "Legende",
+        "unbekannt",
+        "widersprüchlich"
+      ]
+    },
+    "Schauplatz": {
+      "type": "link",
+      "targetTypes": ["place"]
+    },
+    "Beteiligte": {
+      "type": "multilink",
+      "targetTypes": ["character", "organization"]
+    },
+    "Zugehöriges System": {
+      "type": "link",
+      "targetTypes": ["power", "lore"]
+    }
+  },
+  "contextFields": [
+    "Schauplatz",
+    "Beteiligte",
+    "Zugehöriges System"
+  ],
+  "defaultTags": [
+    "lore"
+  ],
+  "defaultContent": "## Überblick\n\n## Ursprung & Hintergrund\n\n## Ablauf oder Funktionsweise\n\n## Regeln & Grenzen\n\n## Auswirkungen\n\n## Wissen innerhalb der Welt\n\n## Rolle in der Handlung\n\n## Geheimnisse & Enthüllungen\n\n## Offene Fragen"
+}

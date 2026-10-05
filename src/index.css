@@ -1,0 +1,317 @@
+/* Fonts ship with the app (SIL OFL 1.1, see THIRD_PARTY_NOTICES.md); nothing is fetched at runtime. */
+@import "@fontsource/inter/latin-400.css";
+@import "@fontsource/inter/latin-500.css";
+@import "@fontsource/inter/latin-600.css";
+@import "@fontsource/inter/latin-700.css";
+@import "@fontsource/jetbrains-mono/latin-400.css";
+@import "@fontsource/jetbrains-mono/latin-500.css";
+@import "@fontsource/jetbrains-mono/latin-700.css";
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Primary Brand Color: #0060E5 (Electric Indigo / Blue) */
+  --color-indigo-50: #eef6ff;
+  --color-indigo-100: #d8e8ff;
+  --color-indigo-200: #b0d3ff;
+  --color-indigo-300: #66a3f5;
+  --color-indigo-400: #3383f0;
+  --color-indigo-500: #1a73f7;
+  --color-indigo-600: #0060E5; /* BRAND PRIMARY */
+  --color-indigo-700: #004ec2;
+  --color-indigo-800: #003da1;
+  --color-indigo-900: #002c7a;
+  --color-indigo-950: #001947;
+
+  --color-brand: #0060E5;
+  --color-brand-hover: #004ec2;
+  --color-brand-light: #eef6ff;
+  --color-brand-border: rgba(0, 96, 229, 0.4);
+
+  /* ==========================================================
+     TESSARIOS NEUTRALS — every non-accent color in the app goes
+     through one of these. Defined as --color-* (not @utility) so
+     Tailwind generates bg-/text-/border- variants *and* supports
+     opacity modifiers like border-line/80, which the app relies
+     on heavily.
+
+     Several tokens share a value today (surface-hover and line
+     are both #27272a). That is intentional: they carry different
+     roles, so a future light mode can move them apart without
+     hunting down which #27272a meant "border" and which meant
+     "hover".
+     ========================================================== */
+
+  /* Surfaces — five steps, darkest to lightest */
+  --color-surface-base: #09090b;      /* app shell, insets, deepest panels */
+  --color-surface-card: #0d0d12;      /* panels and cards */
+  --color-surface-elevated: #12121a;  /* raised on top of a card */
+  --color-surface-control: #18181b;   /* buttons, chips, inputs */
+  --color-surface-hover: #27272a;     /* hover state of a control */
+  --color-surface-active: #3f3f46;    /* pressed / active control */
+
+  /* Lines — borders and dividers */
+  --color-line-subtle: #18181b;
+  --color-line: #27272a;              /* the default border everywhere */
+  --color-line-strong: #3f3f46;
+  --color-line-highlight: #71717b;    /* border on hover-highlight */
+
+  /* Ink — text, brightest to faintest */
+  --color-ink-heading: #f4f4f5;
+  --color-ink-bright: #e4e4e7;
+  --color-ink: #d4d4d8;               /* body text */
+  --color-ink-secondary: #9f9fa9;
+  --color-ink-muted: #71717b;
+  --color-ink-faint: #52525c;
+  --color-ink-disabled: #3f3f46;
+
+  /* One-off tinted surface for inline error messages */
+  --color-danger-surface: #1d0d10;
+
+  /* Relationship-graph edges. Their own token rather than --color-line: an edge
+     drawn over open canvas needs more weight than a border sitting against a
+     panel, and that gap widens on a light ground. */
+  --color-graph-edge: #27272a;
+}
+
+@utility text-2xs {
+  font-size: 0.625rem;
+  line-height: 0.875rem;
+}
+
+@utility text-3xs {
+  font-size: 0.5625rem;
+  line-height: 0.75rem;
+}
+
+@utility text-4xs {
+  font-size: 0.5rem;
+  line-height: 0.625rem;
+}
+
+/* CSS Variables for Mode-Adaptive Themes */
+:root {
+  --color-heading-indigo: #c0d9fa; /* Soft ice blue tone for headings */
+
+  /* Scrim behind modals — near-black on the dark theme; on paper it has to
+     lighten, or the whole page reads as dimmed rather than focused. */
+  --color-overlay: rgb(0 0 0 / 0.8);
+}
+
+/* ============================================================
+   LIGHT THEME
+
+   Only variables are redefined here — no component classes, no
+   !important. Two mechanisms are at work:
+
+   1. The neutral tokens (surface/line/ink) get mirrored values.
+   2. Tailwind v4 compiles even its built-in colors to
+      var(--color-amber-400) etc., so redefining those variables
+      flips all 768 accent/status class usages and the 15 entity
+      type colors without touching a single component.
+
+   The color scales mirror around the 500/600 axis: steps 950-700
+   carry tinted backgrounds and borders (they become the light end),
+   steps 400-100 carry colored text (they become the dark end), and
+   500/600 stay put because they are solid fills already paired with
+   white text in either theme.
+
+   The 900 step is deliberately *not* a clean mirror. It serves two
+   roles at once — tinted background and, at /50 opacity, the entity
+   type chip border — and a straight mirror to the 100 level left
+   those chips indistinguishable from the page. It sits at the 300
+   level instead, which reads on paper and only deepens the handful
+   of tinted backgrounds that share it.
+   ============================================================ */
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* --- Neutrals: elevation now reads as "whiter", not "lighter" --- */
+  --color-surface-base: #eeeef0;      /* page ground, slightly grey so cards lift off it */
+  --color-surface-card: #fafafa;
+  --color-surface-elevated: #ffffff;
+  --color-surface-control: #f4f4f5;
+  --color-surface-hover: #e4e4e7;
+  --color-surface-active: #d4d4d8;
+
+  --color-line-subtle: #f4f4f5;
+  --color-line: #e4e4e7;
+  --color-line-strong: #d4d4d8;
+  --color-line-highlight: #9f9fa9;
+
+  /* Not a straight mirror: the lower half sits one step darker than the dark
+     theme's mirror image would put it. Grey-on-white loses perceived weight
+     much faster than grey-on-black, and these steps carry real content —
+     field labels and values in the dossier — not just decoration. */
+  --color-ink-heading: #09090b;
+  --color-ink-bright: #18181b;
+  --color-ink: #27272a;
+  --color-ink-secondary: #3f3f46;
+  --color-ink-muted: #52525c;
+  --color-ink-faint: #71717b;
+  --color-ink-disabled: #a1a1aa;
+
+  --color-danger-surface: oklch(96.9% .015 12.422);  /* rose-50 */
+  --color-graph-edge: #a1a1aa;
+
+  --color-overlay: rgb(24 24 27 / 0.45);
+
+  /* --- Brand blue: 600/500 hold, the rest mirrors --- */
+  --color-indigo-950: #eef6ff;
+  --color-indigo-900: #66a3f5;
+  --color-indigo-800: #b0d3ff;
+  --color-indigo-700: #66a3f5;
+  --color-indigo-400: #004ec2;
+  --color-indigo-300: #003da1;
+  --color-indigo-200: #002c7a;
+  --color-indigo-100: #001947;
+
+  /* --- Amber (warning) --- */
+  --color-amber-950: oklch(98.7% .022 95.277);
+  --color-amber-900: oklch(87.9% .169 91.605);
+  --color-amber-800: oklch(92.4% .12 95.746);
+  --color-amber-700: oklch(87.9% .169 91.605);
+  --color-amber-400: oklch(55.5% .163 48.998);
+  --color-amber-300: oklch(47.3% .137 46.201);
+  --color-amber-200: oklch(41.4% .112 45.904);
+  --color-amber-100: oklch(27.9% .077 45.635);
+
+  /* --- Emerald (success) --- */
+  --color-emerald-950: oklch(97.9% .021 166.113);
+  --color-emerald-900: oklch(84.5% .143 164.978);
+  --color-emerald-800: oklch(90.5% .093 164.15);
+  --color-emerald-700: oklch(84.5% .143 164.978);
+  --color-emerald-400: oklch(50.8% .118 165.612);
+  --color-emerald-300: oklch(43.2% .095 166.913);
+  --color-emerald-200: oklch(37.8% .077 168.94);
+  --color-emerald-100: oklch(26.2% .051 172.552);
+
+  /* --- Rose (danger) --- */
+  --color-rose-950: oklch(96.9% .015 12.422);
+  --color-rose-900: oklch(81% .117 11.638);
+  --color-rose-800: oklch(89.2% .058 10.001);
+  --color-rose-700: oklch(81% .117 11.638);
+  --color-rose-400: oklch(51.4% .222 16.935);
+  --color-rose-300: oklch(45.5% .188 13.697);
+  --color-rose-200: oklch(41% .159 10.272);
+  --color-rose-100: oklch(27.1% .105 12.094);
+
+  /* --- Entity type hues (EntityTypeBadge). Each type renders as text-X-400 on a
+         bg-X-950/20 chip with a border-X-900/50, so those three steps have to
+         mirror or the category colors turn unreadable on paper. --- */
+  --color-purple-950: oklch(97.7% .014 308.299);
+  --color-purple-900: oklch(82.7% .119 306.383);
+  --color-purple-400: oklch(49.6% .265 301.924);
+
+  --color-yellow-950: oklch(98.7% .026 102.212);
+  --color-yellow-900: oklch(90.5% .182 98.111);
+  --color-yellow-400: oklch(55.4% .135 66.442);
+
+  --color-cyan-950: oklch(98.4% .019 200.873);
+  --color-cyan-900: oklch(86.5% .127 207.078);
+  --color-cyan-400: oklch(52% .105 223.128);
+
+  --color-teal-950: oklch(98.4% .014 180.72);
+  --color-teal-900: oklch(85.5% .138 181.071);
+  --color-teal-400: oklch(51.1% .096 186.391);
+
+  --color-blue-950: oklch(97% .014 254.604);
+  --color-blue-900: oklch(80.9% .105 251.813);
+  --color-blue-400: oklch(48.8% .243 264.376);
+
+  --color-fuchsia-950: oklch(97.7% .017 320.058);
+  --color-fuchsia-900: oklch(83.3% .145 321.434);
+  --color-fuchsia-400: oklch(51.8% .253 323.949);
+
+  --color-violet-950: oklch(96.9% .016 293.756);
+  --color-violet-900: oklch(81.1% .111 293.571);
+  --color-violet-400: oklch(49.1% .27 292.581);
+
+  --color-pink-950: oklch(97.1% .014 343.198);
+  --color-pink-900: oklch(82.3% .12 346.018);
+  --color-pink-400: oklch(52.5% .223 3.958);
+
+  /* --- Zinc: still referenced by the entity type table for the 'visual' type --- */
+  --color-zinc-950: #fafafa;
+  --color-zinc-900: #e4e4e7;
+  --color-zinc-400: #52525c;
+
+  --color-heading-indigo: #1e3a8a;
+}
+
+/* The app shell covers the viewport, but the page behind it shows during load and on
+   overscroll — without this it would stay browser-default while the app has flipped. */
+body {
+  background-color: var(--color-surface-base);
+}
+
+/* Visible keyboard-focus ring, app-wide. Tailwind's outline-none utility (used ~40x for
+   mouse-only elements) sets outline-style:none, which silently also removes the ring for
+   keyboard users — this restores it with !important so tabbing through the app is never
+   invisible, regardless of what outline-* utility an element happens to carry. */
+:focus-visible {
+  outline: 2px solid #6366f1 !important;
+  outline-offset: 2px !important;
+  border-radius: 2px;
+}
+
+/* Heading color utility */
+.text-heading-indigo,
+.text-heading-blue {
+  color: var(--color-heading-indigo) !important;
+}
+
+/* High contrast YAML tags / badges. Built from the indigo scale rather than
+   literal hex, so they follow the theme flip like everything else. */
+.yaml-tag {
+  background-color: var(--color-indigo-950);
+  color: var(--color-indigo-100);
+  border: 1px solid var(--color-brand-border);
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+/* Reusable action buttons (e.g. "Bild hinzufügen", "Medien") */
+.btn-action-indigo {
+  background-color: var(--color-surface-elevated);
+  color: var(--color-indigo-300);
+  border: 1px solid var(--color-brand-border);
+  font-weight: 600;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-action-indigo:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-indigo-200);
+  border-color: var(--color-indigo-500);
+  box-shadow: 0 0 12px rgba(0, 96, 229, 0.3);
+  transform: translateY(-0.5px);
+}
+
+/* Base scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(113, 113, 122, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(113, 113, 122, 0.5);
+}
+
+/* Brand hover highlight, applied on top of whatever border an element carries. */
+.btn-interactive {
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-interactive:hover {
+  border-color: rgba(0, 96, 229, 0.75) !important; /* Brand #0060E5 hover highlight */
+  box-shadow: 0 0 12px rgba(0, 96, 229, 0.25) !important;
+}
