@@ -12,6 +12,18 @@ updates:
       prefix: "deps"
     labels:
       - "dependencies"
+    groups:
+      # react and react-dom must always move together
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+    ignore:
+      # The Node typings should match the Node inside Electron, not the newest Node.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
