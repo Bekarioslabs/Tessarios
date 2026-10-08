@@ -26,3 +26,9 @@ Thumbs.db
 /.tessarios/
 .tessarios/backups/
 .tessarios/full-backups/
+
+# Local working copies that must never be published: the original demo vault (contains
+# unreleased images) and the backup of the pre-release git history.
+/TESSARIOS_DEMO_VAULT/
+/TESSARIOS_HISTORY_BACKUP/
+*.bundle
