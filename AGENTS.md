@@ -174,6 +174,7 @@ Markdown body, images by relative path — not base64 buried in a field.
 |---|---|
 | `README.md` | What the app is, how to run it, licence |
 | `ARCHITECTURE.md` | How the app is put together, and where to extend it |
+| `DESIGN.md` | Design (colours, typography, CSS rules); read before touching the UI |
 | `docs/ki-spezifikation.md` | What the AI does and deliberately does not do (German) |
 | `docs/tessarios-vault-bauanleitung.md` | Building a vault from existing text, e.g. with ChatGPT (German) |
 | `examples/` | A small fictional vault to open in the app |
