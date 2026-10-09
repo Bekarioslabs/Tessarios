@@ -47,7 +47,7 @@
     "electron": "^43.3.0",
     "electron-builder": "^26.15.3",
     "tailwindcss": "^4.1.14",
-    "tsx": "^4.21.0",
+    "tsx": "^4.23.15",
     "typescript": "~5.8.2",
     "vite": "^6.2.3"
   }
