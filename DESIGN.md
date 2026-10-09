@@ -3,6 +3,7 @@ name: Tessarios
 description: A dark, dense writing and worldbuilding interface set in monospace, with an electric blue as the single brand colour; the light theme is switched purely through variables.
 colors:
   brand: "#0060E5"
+  kennfarbe: "{colors.brand}"
   brand-hover: "#004ec2"
   brand-light: "#eef6ff"
   brand-border: "rgba(0, 96, 229, 0.4)"
