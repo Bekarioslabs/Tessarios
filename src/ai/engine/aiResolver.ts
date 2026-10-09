@@ -28,15 +28,15 @@ function loadGlob(loader: () => Record<string, string>): Record<string, string> 
 }
 
 const agentsPromptModules = loadGlob(() =>
-  (import.meta as any).glob('../AGENTS.md', { eager: true, query: '?raw', import: 'default' })
+  (import.meta as any).glob('../AGENTS.default.md', { eager: true, query: '?raw', import: 'default' })
 );
 
 const soulPromptModules = loadGlob(() =>
-  (import.meta as any).glob('../SOUL.md', { eager: true, query: '?raw', import: 'default' })
+  (import.meta as any).glob('../SOUL.default.md', { eager: true, query: '?raw', import: 'default' })
 );
 
 const projectPromptModules = loadGlob(() =>
-  (import.meta as any).glob('../PROJECT.md', { eager: true, query: '?raw', import: 'default' })
+  (import.meta as any).glob('../PROJECT.default.md', { eager: true, query: '?raw', import: 'default' })
 );
 
 const deAiMdModules = loadGlob(() =>
@@ -53,7 +53,7 @@ export const DEFAULT_PROJECT_PROMPT = Object.values(projectPromptModules)[0] || 
 
 /**
  * Resolve global AGENTS.md constitution prompt.
- * Priority: .tessarios/AGENTS.md (in vault) -> src/ai/AGENTS.md (built-in)
+ * Priority: .tessarios/AGENTS.md (in vault) -> src/ai/AGENTS.default.md (built-in)
  */
 export async function resolveAgentsPrompt(
   storage?: IVaultStorage | null,
@@ -74,7 +74,7 @@ export async function resolveAgentsPrompt(
 
 /**
  * Resolve persona and conversation style prompt (SOUL.md).
- * Priority: .tessarios/SOUL.md (in vault) -> src/ai/SOUL.md (built-in generic fallback)
+ * Priority: .tessarios/SOUL.md (in vault) -> src/ai/SOUL.default.md (built-in generic fallback)
  */
 export async function resolveSoulPrompt(
   storage?: IVaultStorage | null,
@@ -95,7 +95,7 @@ export async function resolveSoulPrompt(
 
 /**
  * Resolve project-level orientation prompt (PROJECT.md).
- * Priority: .tessarios/PROJECT.md (in the vault) -> src/ai/PROJECT.md (built-in generic fallback)
+ * Priority: .tessarios/PROJECT.md (in the vault) -> src/ai/PROJECT.default.md (built-in generic fallback)
  */
 export async function resolveProjectPrompt(
   storage?: IVaultStorage | null,

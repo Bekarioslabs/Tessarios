@@ -55,9 +55,9 @@ Allgemeinen zum Besonderen. Jede außer der ersten ist optional:
 
 | # | Ebene | Quelle | Pro Tresor überschreibbar |
 |---|---|---|---|
-| 1 | Verfassung | `src/ai/AGENTS.md` | `.tessarios/AGENTS.md` |
-| 2 | Gesprächsstil | `src/ai/SOUL.md` | `.tessarios/SOUL.md` |
-| 3 | Projekt-Orientierung | `src/ai/PROJECT.md` | `.tessarios/PROJECT.md` |
+| 1 | Verfassung | `src/ai/AGENTS.default.md` | `.tessarios/AGENTS.md` |
+| 2 | Gesprächsstil | `src/ai/SOUL.default.md` | `.tessarios/SOUL.md` |
+| 3 | Projekt-Orientierung | `src/ai/PROJECT.default.md` | `.tessarios/PROJECT.md` |
 | 4 | Vorlagen-Anweisung | `src/templates/<lang>/*.ai.md` | `.tessarios/templates/` |
 | 5 | Arbeitsmodus | `getModeSemanticConfig` | — |
 | 6 | Aufgelöster Kontext | `AIContextResolver` | — |

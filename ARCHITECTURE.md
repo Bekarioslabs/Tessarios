@@ -130,8 +130,8 @@ user clicks.
 
 The AI never fills frontmatter fields and replies are plain prose, never a structured
 action format a model has to get exactly right. The system prompt is assembled from layered
-files — a global constitution (`src/ai/AGENTS.md`), conversational style (`SOUL.md`),
-project orientation (`PROJECT.md`), and optionally a per-template `.ai.md`. Each has a
+files — a global constitution (`src/ai/AGENTS.default.md`), conversational style
+(`SOUL.default.md`), project orientation (`PROJECT.default.md`), and optionally a per-template `.ai.md`. Each has a
 per-vault override under `.tessarios/` in the user's own vault, checked before the built-in
 fallback. See [`docs/ki-spezifikation.md`](docs/ki-spezifikation.md) for the details.
 
