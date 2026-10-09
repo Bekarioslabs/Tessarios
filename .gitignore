@@ -32,3 +32,7 @@ Thumbs.db
 /TESSARIOS_DEMO_VAULT/
 /TESSARIOS_HISTORY_BACKUP/
 *.bundle
+
+# private Planungsdateien (Brain-Standard)
+STATUS.md
+korrespondenz/
