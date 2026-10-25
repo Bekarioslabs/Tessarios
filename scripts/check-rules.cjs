@@ -259,7 +259,7 @@ const files = sourceFiles();
 // ---------------------------------------------------------------------------
 // 7. Licence headers and nothing fetched from the network at runtime.
 //
-//    The project is AGPL-3.0-or-later with a commercial option. Every source file says so,
+//    The project is AGPL-3.0-or-later. Every source file says so,
 //    so a stray header from a template (this repo started with Apache-2.0 ones) cannot
 //    creep back in, and a file cannot ship with no statement at all.
 //

@@ -1,13 +1,12 @@
 # Security policy
 
+Tessarios is finished. There will be no security updates, no fixes and no replies to reports.
+If you need a fix, fork the code.
+
 Tessarios is a local desktop app. It keeps your writing as Markdown files in a folder you
 choose, has no account and no telemetry, and makes no network requests of its own. The only
 traffic is to the AI address you set under *Local AI* (by default LM Studio or Ollama on
 your own computer).
-
-## Supported versions
-
-Only the latest commit on `main` and the latest release are supported.
 
 ## What the app is built to guarantee
 
@@ -18,22 +17,12 @@ Only the latest commit on `main` and the latest release are supported.
 - The AI only proposes text. A change reaches a file after you confirm it.
 - A content security policy blocks everything except local files and the AI address.
 
-## Supply chain
+## Known limits
 
-- `npm ci` installs exactly what the lockfile says.
-- Dependabot watches npm packages and GitHub Actions; CI audits production dependencies and
-  pins actions to commit SHAs.
-- `THIRD_PARTY_NOTICES.md` is generated from the shipped bundle and checked in CI.
-- Builds are not code-signed yet. Treat a downloaded build as software from a small project:
-  build from source, or compare against the checksums published with a release.
-
-## Reporting a vulnerability
-
-Please do not open a public issue. Write to **dev@bekarioslabs.de**, or use GitHub's private
-vulnerability reporting for this repository. Helpful details:
-
-- version or commit and Windows version
-- exact steps to reproduce, expected and actual result
-- whether vault files could be read, changed or deleted
-
-You will get an answer as soon as a single maintainer can manage; there is no bounty.
+- Builds are not code-signed, so Windows SmartScreen will warn. If you would rather not
+  trust a download, build from source.
+- There is no update check. The Chromium inside Electron stays at the version of the build
+  and will age. The app loads no remote content, which limits the exposure, but do not use
+  it to browse the web.
+- When the last version was built, `npm audit` reported no known vulnerabilities in the
+  dependencies. `THIRD_PARTY_NOTICES.md` lists what is shipped.

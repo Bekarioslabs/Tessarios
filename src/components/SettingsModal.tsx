@@ -1014,8 +1014,8 @@ export default function SettingsModal({
                   </h4>
                   <p className="text-[11px] font-mono text-ink-muted mt-1">
                     {language === 'en'
-                      ? 'Early development. Your notes are plain Markdown files in the vault folder you chose.'
-                      : 'Frühe Entwicklung. Deine Notizen sind einfache Markdown-Dateien im gewählten Tresor-Ordner.'}
+                      ? 'Final version: no updates, no support. Your notes are plain Markdown files in the vault folder you chose. The AI features are beta; the app works completely without them.'
+                      : 'Endgültige Version: keine Updates, kein Support. Deine Notizen sind einfache Markdown-Dateien im gewählten Tresor-Ordner. Die KI-Funktionen sind Beta; die App funktioniert vollständig ohne sie.'}
                   </p>
                 </div>
 
@@ -1050,8 +1050,8 @@ export default function SettingsModal({
                   </span>
                   <p className="text-ink">
                     {language === 'en'
-                      ? 'Tessarios is free software under the GNU Affero General Public License, version 3 or later. © 2026 Beka Gwarliani (Bekarioslabs). It comes with no warranty. A commercial licence for use outside the AGPL terms is available from the author (dev@bekarioslabs.de); see COMMERCIAL-LICENSE.md in the source repository.'
-                      : 'Tessarios ist freie Software unter der GNU Affero General Public License, Version 3 oder neuer. © 2026 Beka Gwarliani (Bekarioslabs). Es gibt keine Gewährleistung. Eine kommerzielle Lizenz für die Nutzung außerhalb der AGPL-Bedingungen gibt es beim Autor (dev@bekarioslabs.de); siehe COMMERCIAL-LICENSE.md im Quellcode-Repository.'}
+                      ? 'Tessarios is free software under the GNU Affero General Public License, version 3 or later. © 2026 Beka Gwarliani (Bekarioslabs). It comes with no warranty. The source code is at https://github.com/Bekarioslabs/Tessarios.'
+                      : 'Tessarios ist freie Software unter der GNU Affero General Public License, Version 3 oder neuer. © 2026 Beka Gwarliani (Bekarioslabs). Es gibt keine Gewährleistung. Der Quellcode liegt unter https://github.com/Bekarioslabs/Tessarios.'}
                   </p>
                 </div>
 

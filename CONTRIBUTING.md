@@ -1,13 +1,8 @@
 # Contributing
 
-Tessarios is built and maintained by a single author. Bug reports and ideas are welcome as
-issues.
+Tessarios is finished. This is the last version: there will be no further development, no
+reviews and no merges, so pull requests and issues are not accepted.
 
-**Code contributions are not accepted yet.** The project is offered under the AGPL and under
-a [commercial licence](COMMERCIAL-LICENSE.md). To keep that possible, the author has to hold
-the rights to all of the code, so a pull request can only be merged after you have agreed in
-writing that the author may use and relicense your contribution under both. That agreement
-does not exist yet; until it does, please open an issue instead of a pull request.
-
-Before any change is considered done, `npm run check` must pass. The rules it enforces are
-explained in [`AGENTS.md`](AGENTS.md).
+If you want to continue it or change it, fork the repository. The AGPL allows that; please
+give a fork a different name and logo. Before you change anything, run `npm run check`;
+the rules it enforces are explained in [`AGENTS.md`](AGENTS.md).

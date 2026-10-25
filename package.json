@@ -2,6 +2,7 @@
   "name": "react-example",
   "private": true,
   "version": "1.0.0",
+  "license": "AGPL-3.0-or-later",
   "type": "module",
   "main": "main.cjs",
   "scripts": {
