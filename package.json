@@ -3,6 +3,12 @@
   "private": true,
   "version": "1.0.0",
   "license": "AGPL-3.0-or-later",
+  "description": "A local desktop app for building story worlds and writing the book inside them. Markdown vault, optional local AI.",
+  "author": "Beka Gwarliani",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bekarioslabs/Tessarios.git"
+  },
   "type": "module",
   "main": "main.cjs",
   "scripts": {
@@ -21,9 +27,32 @@
   },
   "build": {
     "appId": "com.bekarios.tessarios",
+    "productName": "Tessarios",
     "directories": {
       "output": "release"
-    }
+    },
+    "files": [
+      "dist/**/*",
+      "main.cjs",
+      "preload.cjs",
+      "electron/loading.html",
+      "package.json"
+    ],
+    "extraFiles": [
+      "LICENSE",
+      "THIRD_PARTY_NOTICES.md"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "publish": null
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",
