@@ -6,8 +6,33 @@ Everything lives as plain Markdown files with YAML frontmatter in a folder on yo
 (a *vault*, Obsidian-compatible). An optional AI companion runs on a local model, proposes
 text as a before/after card, and never changes a file until you click.
 
-> **Status: early development.** Built and used by a single author; not public yet.
-> Developed and tested on Windows only.
+> **Tessarios is finished.** This is the final version: no updates, no bug fixes, no
+> support; issues and pull requests are not accepted. The source is public under the AGPL so
+> anyone can use, study and continue it. Forks are welcome.
+
+## Download and run
+
+Download `Tessarios-1.0.0-win.zip` from the repository's Releases page, unzip it anywhere
+and start `Tessarios.exe`. Nothing is installed, and you do not need Node.js or npm. It is
+a 64-bit Windows 10/11 build.
+
+The build is not code-signed, so Windows may show "Windows protected your PC". Click
+"More info", then "Run anyway". Only do this if you trust where you got the file; you can
+also build it yourself from the source (below) and compare.
+
+## Limitations
+
+- Developed and tested on Windows only. Builds are not code-signed.
+- No update check and no auto-update. The Chromium inside Electron stays at the version of
+  the build and will age. The app loads no remote content, which limits the exposure, but do
+  not use it to browse the web.
+- **The AI features are beta.** The app works completely without them. They were tried with
+  LM Studio and Ollama but not tested exhaustively; the quality depends on your local model.
+  Anyone who wants to improve them is welcome to fork.
+- German and English interface only. The files are Obsidian-compatible, but Obsidian plugins
+  and Canvas are not supported.
+- Keep your own backups. The app saves older versions under `.tessarios/backups/`, which is a
+  safety net and not a substitute.
 
 ## What it does
 
@@ -15,7 +40,7 @@ text as a before/after card, and never changes a file until you click.
   storylines, maps and more, each from a template with typed fields (dropdowns, links to
   other entries) and fixed sections. German and English templates and interface.
 - **Manuscript workspace** — Book → Chapter → Scene with status and word counts.
-- **Local AI, proposals only** — a dossier chat aimed at one section at a time, a writing
+- **Local AI (beta), proposals only** — a dossier chat aimed at one section at a time, a writing
   partner / editor beside each scene, and a "tidy up" step that sorts Open Questions into
   better-fitting sections. Every write is a before/after proposal you confirm, and the
   previous file version is saved first. See [`docs/ki-spezifikation.md`](docs/ki-spezifikation.md)
@@ -23,6 +48,8 @@ text as a before/after card, and never changes a file until you click.
 - **Relationship graph, interactive maps, media gallery, revision history.**
 
 ## Requirements
+
+Only to build from source; the zip needs none of this.
 
 - Node.js and npm
 - For the AI features: [LM Studio](https://lmstudio.ai) or [Ollama](https://ollama.com)
@@ -41,7 +68,7 @@ Other commands:
 ```bash
 npm test                # AI engine and manuscript test suite
 npm run check           # type check, production build, repo rules, tests
-npm run electron:build  # production build and installer (electron-builder)
+npm run electron:build  # production build and Windows zip in release/ (electron-builder)
 ```
 
 `npm run check` must pass before a change is considered done; the rules it enforces are

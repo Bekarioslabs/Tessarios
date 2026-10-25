@@ -173,3 +173,14 @@ npm run electron:build  # Production build + installer via electron-builder
 
 `AGENTS.md` at the repo root documents the coding rules this project has learned the hard
 way — read it before making structural changes.
+
+## Packaging
+
+`npm run electron:build` builds `dist/` with Vite and packs a Windows zip of the unpacked app
+with electron-builder (the `build` field in `package.json`). `files` is a whitelist
+(`dist`, `main.cjs`, `preload.cjs`, `electron/loading.html`), so the local-only folders in the
+project directory can never end up in a build; `LICENSE` and `THIRD_PARTY_NOTICES.md` are placed
+next to the exe. The package `name` stays `react-example` on purpose: Electron derives the
+settings folder (`%APPDATA%\react-example`, which holds the vault list) from it, and
+`productName` only changes the display name and the exe. There is no auto-updater and nothing
+is ever published from the build.
