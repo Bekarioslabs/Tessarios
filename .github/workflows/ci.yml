@@ -30,7 +30,7 @@ jobs:
         run: npm ci
 
       - name: Audit dependencies
-        run: npm audit --omit=dev --audit-level=high
+        run: npm audit --audit-level=high
 
       - name: Type check, build, repo rules, tests
         run: npm run check
