@@ -180,7 +180,8 @@ way — read it before making structural changes.
 with electron-builder (the `build` field in `package.json`). `files` is a whitelist
 (`dist`, `main.cjs`, `preload.cjs`, `electron/loading.html`), so the local-only folders in the
 project directory can never end up in a build; `LICENSE` and `THIRD_PARTY_NOTICES.md` are placed
-next to the exe. The package `name` stays `react-example` on purpose: Electron derives the
+next to the exe, and `buildResources/icon.ico` (generated from `src/logo/TESSARIOS_DARK.svg`, 16 to 256 px)
+is the exe icon. The package `name` stays `react-example` on purpose: Electron derives the
 settings folder (`%APPDATA%\react-example`, which holds the vault list) from it, and
 `productName` only changes the display name and the exe. There is no auto-updater and nothing
 is ever published from the build.

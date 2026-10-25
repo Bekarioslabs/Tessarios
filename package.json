@@ -43,6 +43,7 @@
       "THIRD_PARTY_NOTICES.md"
     ],
     "win": {
+      "icon": "buildResources/icon.ico",
       "target": [
         {
           "target": "zip",
