@@ -12,6 +12,8 @@ examples have something to talk about.
 ## Open it
 
 In the Windows zip this folder is already there, next to `Tessarios.exe`, named `Tessarios Wiki`.
+The start screen of the app has a button, **Open the Tessarios Wiki**, which copies it to
+`Documents/Tessarios Wiki` and opens the copy; the steps below are for opening it by hand.
 
 1. Copy the `wiki-vault` folder somewhere you can write to. Saving from the app rewrites files,
    so work on a copy if you want to keep this one pristine.

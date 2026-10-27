@@ -181,7 +181,9 @@ with electron-builder (the `build` field in `package.json`). `files` is a whitel
 (`dist`, `main.cjs`, `preload.cjs`, `electron/loading.html`), so the local-only folders in the
 project directory can never end up in a build; `LICENSE` and `THIRD_PARTY_NOTICES.md` are placed
 next to the exe, and `buildResources/icon.ico` (generated from `src/logo/TESSARIOS_DARK.svg`, 16 to 256 px)
-is the exe icon. The package `name` stays `react-example` on purpose: Electron derives the
+is the exe icon. `examples/wiki-vault` is copied next to the exe as `Tessarios Wiki` (without backups
+or `vault_config.json` an earlier test may have left in it); the start screen opens a copy of it in
+Documents through `wiki:open` in `main.cjs`, which also decides the path, never the renderer. The package `name` stays `react-example` on purpose: Electron derives the
 settings folder (`%APPDATA%\react-example`, which holds the vault list) from it, and
 `productName` only changes the display name and the exe. There is no auto-updater and nothing
 is ever published from the build.
