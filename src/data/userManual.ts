@@ -86,7 +86,7 @@ export const USER_MANUAL_DATA: ManualSection[] = [
         },
         {
           heading: '6. What actually landed on disk',
-          body: 'Open the file in a text editor and you will see exactly this shape:\n\n```\n---\nid: "ilka"\ntype: character\ntitle: "Ilka"\nAlter: "8"\nRolle: "Hauptheld"\n---\n\n## Charakterkern\nSie will beweisen, dass klein sein kein Nachteil ist...\n\n## Alltag & Persönlichkeit\n```\n\nA field you typed is a plain frontmatter line. A section you accepted is plain text under its `##` heading. Nothing more.'
+          body: 'Open the file in a text editor and you will see exactly this shape:\n\n```\n---\nid: "ilka"\ntype: character\ntitle: "Ilka"\nAge: "8"\nRole: "Protagonist"\n---\n\n## Character Core\nShe wants to prove that being small is no disadvantage...\n\n## Everyday Life & Personality\n```\n\nA field you typed is a plain frontmatter line. A section you accepted is plain text under its `##` heading. Nothing more.'
         },
         {
           heading: '7. Pause and come back',
