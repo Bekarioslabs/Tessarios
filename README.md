@@ -82,7 +82,7 @@ explained in [`AGENTS.md`](AGENTS.md).
 | [`AGENTS.md`](AGENTS.md) | Coding rules this project learned the hard way |
 | [`docs/ki-spezifikation.md`](docs/ki-spezifikation.md) | What the AI does and deliberately does not do |
 | [`docs/tessarios-vault-bauanleitung.md`](docs/tessarios-vault-bauanleitung.md) | Building a vault from existing text (e.g. with ChatGPT), German |
-| [`examples/`](examples/) | A small fictional vault to open in the app |
+| [`examples/`](examples/) | A wiki written as a vault: one example per entry type, plus notes on the app |
 | [`FUTURE_IDEAS.md`](FUTURE_IDEAS.md) | Ideas that are not built |
 | [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) | Licences of bundled components |
 

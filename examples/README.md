@@ -1,29 +1,43 @@
-# Example vault
+# Example vault: the Tessarios wiki
 
-`demo-vault/` is a small, fictional vault — *The Lamp Under the Pier*, a children's adventure
-set in a harbour town — that exercises most of what Tessarios does. It is plain Markdown; open
-the folder as a vault (**Settings → Storage → Select Vault Folder**) and set the interface to
-English.
+`wiki-vault/` is a vault about Tessarios, written as a vault. Open it in the app and learn the
+app by using it: every one of the 15 entry types has an example entry with a tip box at the top
+that says what the type is for and what you can do with it, and a set of notes explains the
+app around the entries (files, links, the manuscript workspace, the AI, maps and media, backups,
+settings).
 
-It contains no images. Add your own to see covers, galleries and maps with markers.
+The example world is a children's adventure, *The Lamp Under the Pier*. It is only there so the
+examples have something to talk about.
 
-## What to look at
+## Open it
+
+1. Copy the `wiki-vault` folder somewhere you can write to. Saving from the app rewrites files,
+   so work on a copy if you want to keep this one pristine.
+2. In Tessarios: **Settings → Storage & Vault → Select Vault Folder**, pick the copy.
+3. Set the interface to English (**Settings → General**) and start with the note **Start here**.
+
+The AI features need a local model server (LM Studio or Ollama) and are beta; everything else
+works without one.
+
+## What is in it
 
 | Where | What it shows |
 |---|---|
-| `Characters/Mira Okafor` | A full character dossier. Its **Open Questions** hold five loose points, which is what **Tidy up entry** sorts into the other sections. |
-| `Scenes/Scene_K02_S01 – Mr. Halvorsen Says Nothing` → AI tab → **Editor** | The scene calls him "fully informed"; his dossier says `clueless`. The editor role flags it by plain text search, without asking the model. |
-| Manuscript workspace | Book → chapter → scene with status and word counts. |
-| Graph view | Every entry links to others through `[[wikilinks]]` in its fields and text. |
-| `.tessarios/PROJECT.md` | The project-orientation file the AI reads on every request (genre, tone, audience). |
+| `Notes/Start here` | An index with one example per entry type, and links to every note |
+| `Characters/Mira Okafor` | A full dossier with a cover image. Its **Open Questions** hold five loose points for **Tidy up entry** |
+| `Scenes/Scene_K02_S01 – Mr. Halvorsen Says Nothing` | In the manuscript workspace, the AI tab in the Editor role flags that the scene contradicts his dossier, without asking the model |
+| `Maps/Greywater Bay Map` | Pins linked to entries |
+| `Maps/Saltmarsh Pier Harbour Plan` | Regions, two floors and pins on one map |
+| `Items/Star Blade`, `Visuals/Mira Okafor – Reference Board` | Concept art as a cover image, and a gallery |
+| `assets/Character sheet 02.png` | Deliberately not linked to anything: the media note shows how to link it |
+| `.tessarios/PROJECT.md` | The project-orientation file the AI reads on every request |
 
-## Use it as a reference
+All images are in `wiki-vault/assets/`. They are examples and not part of the program.
 
-Each file follows the format described in
+## Format
+
+Each file follows the format in
 [`docs/tessarios-vault-bauanleitung.md`](../docs/tessarios-vault-bauanleitung.md): frontmatter
-fields from the English templates, the template's sections, links as `[[Title]]`, no
-`relations:` block, and filenames that are the slug of the title.
-
-The AI features need a local model server (LM Studio or Ollama); everything else works without
-one. Saving from the app rewrites files, so work on a copy if you want to keep the example
-pristine.
+fields from the English templates, the template's sections, links as `[[Title]]`, and file names
+that are the slug of the title. `npm test` loads this vault with the app's own loader and checks
+that every entry type is present, every link and map pin resolves, and every image exists.
