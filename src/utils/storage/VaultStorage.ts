@@ -11,6 +11,10 @@ export interface IVaultStorage {
 
   /** Full path of the open vault, where the backend has one (the Electron folder backend does). */
   getPath?(): Promise<string>;
+
+  /** The wiki that ships with the app: whether it is there, and opening it as the user's own copy. */
+  isWikiAvailable?(): Promise<boolean>;
+  openWiki?(): Promise<boolean>;
   
   readFile(path: string): Promise<string>;
   readBinaryFile(path: string): Promise<ArrayBuffer>;

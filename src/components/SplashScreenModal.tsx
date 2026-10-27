@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import Logo from './Logo';
 import { ThemeMode } from './SettingsModal';
 import { Language } from '../utils/i18n';
-import { Folder, FolderOpen, RefreshCw, X, ChevronRight } from 'lucide-react';
+import { BookOpen, Folder, FolderOpen, RefreshCw, X, ChevronRight } from 'lucide-react';
 
 export interface RecentVaultItem {
   name: string;
@@ -20,6 +20,9 @@ interface SplashScreenModalProps {
   onClose: () => void;
   onOpenVault: () => Promise<void>;
   onOpenRecentVault?: (vaultPath: string) => Promise<void>;
+  /** The wiki that ships with the app; the card only shows when it is actually there. */
+  onOpenWiki?: () => Promise<void>;
+  wikiAvailable?: boolean;
   theme: ThemeMode;
   language: Language;
 }
@@ -59,6 +62,8 @@ export default function SplashScreenModal({
   onClose,
   onOpenVault,
   onOpenRecentVault,
+  onOpenWiki,
+  wikiAvailable,
   theme,
   language,
 }: SplashScreenModalProps) {
@@ -164,6 +169,32 @@ export default function SplashScreenModal({
           <FolderOpen className="h-4 w-4" />
           <span>{language === 'en' ? 'Open Vault' : 'Tresor öffnen'}</span>
         </button>
+
+        {/* The wiki that ships with the app. It opens as the user's own copy in Documents. */}
+        {wikiAvailable && onOpenWiki && (
+          <button
+            onClick={async () => {
+              onClose();
+              await onOpenWiki();
+            }}
+            className="group w-full mt-3 p-3 rounded-xl bg-indigo-950/40 hover:bg-indigo-950/70 border border-brand-border hover:border-indigo-500 transition flex items-center justify-between gap-3 text-left cursor-pointer"
+          >
+            <div className="flex items-center gap-3 min-w-0">
+              <BookOpen className="h-5 w-5 text-indigo-400 shrink-0" />
+              <div className="flex flex-col min-w-0">
+                <span className="text-xs font-mono font-bold text-ink-heading">
+                  {language === 'en' ? 'Open the Tessarios Wiki' : 'Tessarios-Wiki öffnen'}
+                </span>
+                <span className="text-[10px] font-mono text-ink-secondary">
+                  {language === 'en'
+                    ? 'A small wiki written as a vault: one example per entry type, plus notes on the app. Opens as your own copy in Documents.'
+                    : 'Ein kleines Wiki als Tresor: ein Beispiel pro Eintragstyp und Notizen zur App. Öffnet sich als eigene Kopie in Dokumente.'}
+                </span>
+              </div>
+            </div>
+            <ChevronRight className="h-3.5 w-3.5 text-ink-faint group-hover:text-indigo-400 transition shrink-0" />
+          </button>
+        )}
 
         {/* Recent Vaults Section */}
         <div className="w-full mt-6 text-left border-t border-line pt-4 flex flex-col gap-2">

@@ -154,6 +154,32 @@ export function useVaultStorage({
     }
   };
 
+  const [wikiAvailable, setWikiAvailable] = useState(false);
+  useEffect(() => {
+    getStorage().isWikiAvailable?.().then(setWikiAvailable).catch(() => setWikiAvailable(false));
+  }, []);
+
+  /** Opens the bundled wiki as the user's own copy; the shipped original is never written to. */
+  const handleOpenWiki = async () => {
+    try {
+      const storage = getStorage();
+      const opened = await storage.openWiki?.();
+      const wikiPath = opened ? await storage.getPath?.() : '';
+      if (!wikiPath) throw new Error('the bundled wiki is not available');
+      await handleOpenRecentVault(wikiPath);
+    } catch (err) {
+      console.error('Failed to open the bundled wiki:', err);
+      setAlertDialog({
+        isOpen: true,
+        title: tr('Wiki could not be opened', 'Wiki konnte nicht geöffnet werden'),
+        message: tr(
+          'The wiki next to the app could not be copied to your Documents folder. Open the folder "Tessarios Wiki" next to the app with "Open Vault" instead.',
+          'Das Wiki neben der App konnte nicht in deinen Dokumente-Ordner kopiert werden. Öffne stattdessen den Ordner "Tessarios Wiki" neben der App mit "Tresor öffnen".'
+        ),
+      });
+    }
+  };
+
   const handleOpenLocalFolder = async () => {
     try {
       // Create automatic backup snapshot before changing anything
@@ -383,6 +409,8 @@ export function useVaultStorage({
     mergeConfirmDialog,
     setMergeConfirmDialog,
     handleOpenRecentVault,
+    handleOpenWiki,
+    wikiAvailable,
     handleOpenLocalFolder,
     handleConfirmMergeVault,
     handleConfirmReplaceVault,

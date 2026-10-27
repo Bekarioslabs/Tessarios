@@ -8,7 +8,7 @@ const path = require('path');
 const url = require('url');
 const fs = require('fs').promises;
 const fsSync = require('fs');
-const { createVaultRegistry } = require('./electron/vaultAccess.cjs');
+const { createVaultRegistry, ensureWikiCopy } = require('./electron/vaultAccess.cjs');
 
 const userDataPath = app.getPath('userData');
 const configFilePath = path.join(userDataPath, 'config.json');
@@ -423,6 +423,32 @@ ipcMain.handle('vault:getName', () => {
 
 // The recent-vaults list needs the full path to reopen a vault; the name alone is not enough.
 ipcMain.handle('vault:getPath', () => activeVaultPath || '');
+
+// The wiki that ships with the app: the folder "Tessarios Wiki" next to the exe (examples/wiki-vault
+// when running from source). The renderer never supplies a path; this process decides.
+function bundledWikiPath() {
+  const source = app.isPackaged
+    ? path.join(path.dirname(process.execPath), 'Tessarios Wiki')
+    : path.join(app.getAppPath(), 'examples', 'wiki-vault');
+  return fsSync.existsSync(path.join(source, 'Notes')) ? source : null;
+}
+
+ipcMain.handle('wiki:isAvailable', () => bundledWikiPath() !== null);
+
+// Opens the wiki as the user's own copy in Documents, so the shipped original stays untouched.
+// An existing "Tessarios Wiki" folder in Documents is reused as it is, never overwritten.
+ipcMain.handle('wiki:open', async () => {
+  const source = bundledWikiPath();
+  if (!source) return false;
+  const target = path.join(app.getPath('documents'), 'Tessarios Wiki');
+  await ensureWikiCopy(fs, fsSync, source, target);
+  activeVaultPath = target;
+  const config = loadConfig();
+  config.activeVaultPath = target;
+  saveConfig(config);
+  knownVaults.remember(target);
+  return true;
+});
 
 ipcMain.handle('vault:readFile', async (event, relativePath) => {
   const fullPath = validatePath(relativePath);

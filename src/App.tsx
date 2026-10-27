@@ -115,6 +115,8 @@ export default function App() {
     mergeConfirmDialog,
     setMergeConfirmDialog,
     handleOpenRecentVault,
+    handleOpenWiki,
+    wikiAvailable,
     handleOpenLocalFolder,
     handleConfirmMergeVault,
     handleConfirmReplaceVault,
@@ -669,6 +671,8 @@ export default function App() {
         onClose={() => setIsSplashOpen(false)}
         onOpenVault={handleOpenLocalFolder}
         onOpenRecentVault={handleOpenRecentVault}
+        onOpenWiki={handleOpenWiki}
+        wikiAvailable={wikiAvailable}
         theme={theme}
         language={language}
       />

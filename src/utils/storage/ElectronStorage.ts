@@ -30,6 +30,16 @@ export class ElectronStorage implements IVaultStorage {
     return (window as any).vault.getPath();
   }
 
+  async isWikiAvailable(): Promise<boolean> {
+    if (!this.isAvailable()) return false;
+    return (window as any).vault.isWikiAvailable();
+  }
+
+  async openWiki(): Promise<boolean> {
+    if (!this.isAvailable()) return false;
+    return (window as any).vault.openWiki();
+  }
+
   async readFile(path: string): Promise<string> {
     if (!this.isAvailable()) throw new Error('Electron storage not available');
     return (window as any).vault.readFile(path);
