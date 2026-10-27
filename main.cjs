@@ -8,6 +8,7 @@ const path = require('path');
 const url = require('url');
 const fs = require('fs').promises;
 const fsSync = require('fs');
+const { createVaultRegistry } = require('./electron/vaultAccess.cjs');
 
 const userDataPath = app.getPath('userData');
 const configFilePath = path.join(userDataPath, 'config.json');
@@ -36,6 +37,11 @@ let activeVaultPath = loadConfig().activeVaultPath || null;
 if (activeVaultPath && !fsSync.existsSync(activeVaultPath)) {
   activeVaultPath = null;
 }
+
+// Folders the user has chosen before. The recent-vaults list may only reopen one of these, never an
+// arbitrary path from the renderer.
+const knownVaults = createVaultRegistry({ loadConfig, saveConfig });
+if (activeVaultPath) knownVaults.remember(activeVaultPath);
 
 function validatePath(relativePath) {
   if (!activeVaultPath) throw new Error('Vault not initialized');
@@ -367,6 +373,16 @@ ipcMain.handle('vault:initialize', async (event, options) => {
     activeVaultPath = null;
   }
 
+  // Reopen a vault from the recent list: only folders chosen before, and only if they still exist.
+  if (options && options.targetPath) {
+    const wanted = knownVaults.normalise(options.targetPath);
+    if (!knownVaults.isKnown(wanted) || !fsSync.existsSync(wanted)) return false;
+    activeVaultPath = wanted;
+    const config = loadConfig();
+    config.activeVaultPath = wanted;
+    saveConfig(config);
+  }
+
   if (!activeVaultPath || forcePrompt) {
     const result = await dialog.showOpenDialog(mainWindow, {
       properties: ['openDirectory', 'createDirectory'],
@@ -382,6 +398,7 @@ ipcMain.handle('vault:initialize', async (event, options) => {
     const config = loadConfig();
     config.activeVaultPath = activeVaultPath;
     saveConfig(config);
+    knownVaults.remember(activeVaultPath);
   }
 
   // Ensure default vault structure exists.
@@ -403,6 +420,9 @@ ipcMain.handle('vault:initialize', async (event, options) => {
 ipcMain.handle('vault:getName', () => {
   return activeVaultPath ? path.basename(activeVaultPath) : 'Unknown Vault';
 });
+
+// The recent-vaults list needs the full path to reopen a vault; the name alone is not enough.
+ipcMain.handle('vault:getPath', () => activeVaultPath || '');
 
 ipcMain.handle('vault:readFile', async (event, relativePath) => {
   const fullPath = validatePath(relativePath);

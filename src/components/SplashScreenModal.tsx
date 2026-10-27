@@ -24,18 +24,28 @@ interface SplashScreenModalProps {
   language: Language;
 }
 
+// Older versions stored only the folder name as the "path", which cannot be reopened. Those
+// entries are dropped here; a full Windows or POSIX path is required.
+const isFullPath = (p: unknown) => typeof p === 'string' && /^([A-Za-z]:[\\/]|\\\\|\/)/.test(p);
+
 export function getRecentVaults(): RecentVaultItem[] {
   try {
     const raw = localStorage.getItem('tessarios_recent_vaults');
     if (raw) {
-      return JSON.parse(raw);
+      return (JSON.parse(raw) as RecentVaultItem[]).filter(v => isFullPath(v?.path));
     }
   } catch {}
   return [];
 }
 
+export function removeRecentVault(path: string): void {
+  try {
+    localStorage.setItem('tessarios_recent_vaults', JSON.stringify(getRecentVaults().filter(v => v.path !== path)));
+  } catch {}
+}
+
 export function addRecentVault(name: string, path: string): void {
-  if (!name || !path) return;
+  if (!name || !isFullPath(path)) return;
   try {
     let current = getRecentVaults();
     current = current.filter(v => v.path !== path);

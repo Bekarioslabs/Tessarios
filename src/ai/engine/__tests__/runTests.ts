@@ -7,6 +7,7 @@ import { runPhase1Tests } from './aiEnginePhase1.test';
 import { runPhase2Tests } from './aiEnginePhase2.test';
 import { runVaultTests } from '../../../utils/__tests__/vaultManager.test';
 import { runExampleVaultTests } from '../../../utils/__tests__/exampleVault.test';
+import { runVaultAccessTests } from '../../../utils/__tests__/vaultAccess.test';
 
 async function main() {
   console.log('🧪 Running Phase 1 Test Suite...');
@@ -25,7 +26,11 @@ async function main() {
   const res4 = await runExampleVaultTests();
   res4.log.forEach(l => console.log(l));
 
-  if (res1.success && res2.success && res3.success && res4.success) {
+  console.log('\n🧪 Running Vault Access Test Suite...');
+  const res5 = await runVaultAccessTests();
+  res5.log.forEach(l => console.log(l));
+
+  if (res1.success && res2.success && res3.success && res4.success && res5.success) {
     console.log('\n🎉 ALL PHASE 1, 2 & 3 ENGINE TESTS PASSED SUCCESSFULLY!');
     process.exit(0);
   } else {

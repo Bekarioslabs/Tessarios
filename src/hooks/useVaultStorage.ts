@@ -10,7 +10,7 @@ import { exportVaultAsZip } from '../utils/fileSystemVault';
 import { loadVaultFromStorage, syncFullVaultToStorage, purgeOrphanedBackups } from '../utils/vaultManager';
 import { getStorage } from '../utils/storage';
 import { IVaultStorage } from '../utils/storage/VaultStorage';
-import { addRecentVault } from '../components/SplashScreenModal';
+import { addRecentVault, removeRecentVault } from '../components/SplashScreenModal';
 import { AlertDialogState } from './useDialogState';
 
 /**
@@ -104,12 +104,10 @@ export function useVaultStorage({
             return keys.length > 0 ? keys[0] : '';
           });
 
-          // Fetch active vault path from IPC if available
-          if ((window as any).vault?.getName) {
-            const activePath = await (window as any).vault.getName();
-            if (name && activePath) {
-              addRecentVault(name, activePath);
-            }
+          // The recent-vaults list needs the full path, not just the folder name
+          const activePath = await storage.getPath?.();
+          if (name && activePath) {
+            addRecentVault(name, activePath);
           }
         } catch (err) {
           console.error('Failed to load vault on boot:', err);
@@ -120,27 +118,39 @@ export function useVaultStorage({
   }, []);
 
   const handleOpenRecentVault = async (vaultPath: string) => {
+    const failed = () => {
+      // A folder that moved or was deleted would stay in the list and fail every time.
+      removeRecentVault(vaultPath);
+      setAlertDialog({
+        isOpen: true,
+        title: tr('Vault could not be opened', 'Tresor konnte nicht geöffnet werden'),
+        message: tr(
+          'The folder was moved, deleted or is no longer in your list. It has been removed from the recent vaults. Use "Open Vault" and pick it again.',
+          'Der Ordner wurde verschoben, gelöscht oder ist nicht mehr in deiner Liste. Er wurde aus den zuletzt geöffneten Tresoren entfernt. Wähle ihn mit "Tresor öffnen" erneut aus.'
+        ),
+      });
+    };
     try {
       const storage = getStorage();
       const success = await storage.initialize({ targetPath: vaultPath });
-      if (success) {
-        setIsStorageActive(true);
-        const name = storage.getName();
-        setLocalVaultName(name);
-        addRecentVault(name, vaultPath);
-        const loadedVault = await loadVaultFromStorage(storage) as any;
-        setEntities(loadedVault.entities);
-        runOrphanedBackupCleanup(storage, loadedVault.entities);
-        if (loadedVault.looseMedia) {
-          setLooseMedia(loadedVault.looseMedia);
-        }
-        const keys = Object.keys(loadedVault.entities);
-        if (keys.length > 0) {
-          setActiveEntityId(keys[0]);
-        }
+      if (!success) {
+        failed();
+        return;
       }
+      setIsStorageActive(true);
+      const name = storage.getName();
+      setLocalVaultName(name);
+      addRecentVault(name, (await storage.getPath?.()) || vaultPath);
+      const loadedVault = await loadVaultFromStorage(storage) as any;
+      setEntities(loadedVault.entities);
+      runOrphanedBackupCleanup(storage, loadedVault.entities);
+      // Media of the vault we just left must not stay in the gallery of the new one
+      setLooseMedia(loadedVault.looseMedia || {});
+      const keys = Object.keys(loadedVault.entities);
+      setActiveEntityId(keys.length > 0 ? keys[0] : '');
     } catch (err) {
       console.error('Failed to open recent vault:', err);
+      failed();
     }
   };
 
@@ -165,10 +175,8 @@ export function useVaultStorage({
           setIsStorageActive(true);
           const name = storage.getName();
           setLocalVaultName(name);
-          if ((window as any).vault?.getName) {
-            const pathStr = await (window as any).vault.getName();
-            addRecentVault(name, pathStr);
-          }
+          const pathStr = await storage.getPath?.();
+          if (pathStr) addRecentVault(name, pathStr);
         }
       } catch (e: any) {
         console.error('Storage initialization failed', e);

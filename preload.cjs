@@ -12,6 +12,7 @@ contextBridge.exposeInMainWorld('appShell', {
 
 contextBridge.exposeInMainWorld('vault', {
   getName: () => ipcRenderer.invoke('vault:getName'),
+  getPath: () => ipcRenderer.invoke('vault:getPath'),
   initialize: (options) => ipcRenderer.invoke('vault:initialize', options),
   readFile: (path) => ipcRenderer.invoke('vault:readFile', path),
   readBinaryFile: (path) => ipcRenderer.invoke('vault:readBinaryFile', path),

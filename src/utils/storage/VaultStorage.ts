@@ -8,6 +8,9 @@ export interface IVaultStorage {
   isAvailable(): boolean;
   
   initialize(options?: { prompt?: boolean; targetPath?: string }): Promise<boolean>;
+
+  /** Full path of the open vault, where the backend has one (the Electron folder backend does). */
+  getPath?(): Promise<string>;
   
   readFile(path: string): Promise<string>;
   readBinaryFile(path: string): Promise<ArrayBuffer>;

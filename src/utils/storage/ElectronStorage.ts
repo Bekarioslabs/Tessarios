@@ -25,6 +25,11 @@ export class ElectronStorage implements IVaultStorage {
     return success;
   }
 
+  async getPath(): Promise<string> {
+    if (!this.isAvailable()) return '';
+    return (window as any).vault.getPath();
+  }
+
   async readFile(path: string): Promise<string> {
     if (!this.isAvailable()) throw new Error('Electron storage not available');
     return (window as any).vault.readFile(path);

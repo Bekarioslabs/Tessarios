@@ -35,7 +35,7 @@
       "dist/**/*",
       "main.cjs",
       "preload.cjs",
-      "electron/loading.html",
+      "electron/*",
       "package.json"
     ],
     "extraFiles": [
