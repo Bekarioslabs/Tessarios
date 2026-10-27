@@ -40,7 +40,11 @@
     ],
     "extraFiles": [
       "LICENSE",
-      "THIRD_PARTY_NOTICES.md"
+      "THIRD_PARTY_NOTICES.md",
+      {
+        "from": "examples/wiki-vault",
+        "to": "Tessarios Wiki"
+      }
     ],
     "win": {
       "icon": "buildResources/icon.ico",

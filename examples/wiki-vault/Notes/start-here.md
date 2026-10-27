@@ -18,7 +18,7 @@ cssclasses:
 ## Content
 This vault is a small wiki about Tessarios, written as a vault so you can learn the app by using it. Every entry type has one example that explains itself in a green *tip* box at the top. The notes (like this one) explain the app around the entries.
 
-**Open it as a vault:** Settings → Storage & Vault → Select Vault Folder, then pick this folder. Set the interface to English (Settings → General). Saving from the app rewrites files, so work on a copy if you want to keep the original.
+**Open it as a vault:** Settings → Storage & Vault → Select Vault Folder, then pick this folder (in the Windows zip it is the folder `Tessarios Wiki` next to `Tessarios.exe`). Set the interface to English (Settings → General). Saving from the app rewrites files, so work on a copy if you want to keep the original.
 
 **The example world** is a children's adventure, *The Lamp Under the Pier*: a girl who can make seawater glow, her friend, a tidal scientist and a lighthouse keeper. It is only there so the examples have something to talk about.
 

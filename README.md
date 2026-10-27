@@ -16,6 +16,10 @@ Download `Tessarios-1.0.0-win.zip` from the repository's Releases page, unzip it
 and start `Tessarios.exe`. Nothing is installed, and you do not need Node.js or npm. It is
 a 64-bit Windows 10/11 build.
 
+The zip also contains a folder `Tessarios Wiki`: a small wiki written as a vault, with one
+example for every entry type. Open it with **Settings → Storage & Vault → Select Vault Folder**
+and start with the note *Start here*. It is your own copy; changes are saved into it.
+
 The build is not code-signed, so Windows may show "Windows protected your PC". Click
 "More info", then "Run anyway". Only do this if you trust where you got the file; you can
 also build it yourself from the source (below) and compare.
