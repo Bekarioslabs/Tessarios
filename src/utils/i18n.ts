@@ -27,7 +27,6 @@ export function getInitialLanguage(): Language {
 export const UI_TRANSLATIONS: Record<Language, Record<string, string>> = {
   de: {
     // General
-    app_title: 'Archivar-Chroniken',
     tagline: 'Lokaler Worldbuilding-Tresor',
     search_placeholder: 'Durchsuche deinen Tresor...',
     all_categories: 'Alle Kategorien',
@@ -92,7 +91,6 @@ export const UI_TRANSLATIONS: Record<Language, Record<string, string>> = {
   },
   en: {
     // General
-    app_title: 'Archivist Chronicles',
     tagline: 'Local Worldbuilding Vault',
     search_placeholder: 'Search your vault...',
     all_categories: 'All Categories',
