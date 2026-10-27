@@ -22,7 +22,7 @@ Settings has six tabs:
 - **General:** interface language (German or English) and *Compress Images on Import*.
 - **Storage & Vault:** the active vault folder and *Select Vault Folder*, ZIP backups, how many versions are kept per entry and how long backups of deleted entries stay.
 - **Local AI:** the server address (LM Studio or Ollama), the active model, *Refresh Models*, and the *Context budget*. The AI is optional.
-- **Help & Shortcuts:** the interactive manual and the editor shortcuts.
+- **Help & Shortcuts:** the interactive manual, a button that opens this wiki again (as your copy in Documents), and the editor shortcuts.
 - **About & Legal:** version, a short privacy statement, the licence and the licences of the bundled software.
 
 **Privacy in one line:** no account, no telemetry, no network traffic of its own. The only traffic is to the AI address you set.

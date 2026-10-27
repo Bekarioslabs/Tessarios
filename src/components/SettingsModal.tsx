@@ -45,11 +45,16 @@ interface SettingsModalProps {
   onSyncToLocalFolder?: () => Promise<void>;
   onDisconnectLocalFolder?: () => void;
   onToggleAutoSyncLocal?: (enabled: boolean) => void;
+  // The wiki that ships with the app (opens as the user's own copy); the button only shows when it exists
+  onOpenWiki?: () => Promise<void>;
+  wikiAvailable?: boolean;
 }
 
 export default function SettingsModal({
   isOpen,
   onClose,
+  onOpenWiki,
+  wikiAvailable,
   theme,
   onThemeChange,
   language,
@@ -928,6 +933,31 @@ export default function SettingsModal({
                     <ExternalLink className="h-3.5 w-3.5" />
                   </button>
                 </div>
+
+                {wikiAvailable && onOpenWiki && (
+                  <div className="bg-surface-base border border-line rounded-xl p-4 flex items-center justify-between gap-3">
+                    <div className="min-w-0">
+                      <h4 className="text-sm font-mono font-bold text-ink-heading">
+                        {language === 'en' ? 'Tessarios Wiki' : 'Tessarios-Wiki'}
+                      </h4>
+                      <p className="text-[11px] font-mono text-ink mt-0.5">
+                        {language === 'en'
+                          ? 'One example per entry type, plus notes on the app. Opens as your own copy in Documents.'
+                          : 'Ein Beispiel pro Eintragstyp und Notizen zur App. Öffnet sich als eigene Kopie in Dokumente.'}
+                      </p>
+                    </div>
+                    <button
+                      onClick={async () => {
+                        onClose();
+                        await onOpenWiki();
+                      }}
+                      className="px-3.5 py-2 bg-surface-control hover:bg-surface-hover border border-line text-ink-bright rounded-lg text-xs font-mono font-semibold transition cursor-pointer shrink-0 flex items-center gap-1.5"
+                    >
+                      <BookOpen className="h-3.5 w-3.5 text-indigo-400" />
+                      <span>{language === 'en' ? 'Open Wiki' : 'Wiki öffnen'}</span>
+                    </button>
+                  </div>
+                )}
 
                 <div>
                   <h4 className="text-xs font-mono font-bold uppercase text-ink-heading tracking-wider flex items-center gap-2">

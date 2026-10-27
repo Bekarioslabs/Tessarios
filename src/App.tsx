@@ -679,6 +679,8 @@ export default function App() {
       <SettingsModal
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
+        onOpenWiki={handleOpenWiki}
+        wikiAvailable={wikiAvailable}
         initialTab={settingsInitialTab}
         theme={theme}
         onThemeChange={handleThemeChange}
