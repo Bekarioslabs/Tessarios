@@ -9,6 +9,21 @@ import { DEFAULT_TEMPLATES_EN } from '../data/templates_en';
 
 export type Language = 'de' | 'en';
 
+/**
+ * The language to start in: the stored choice, else the system language if it is German,
+ * else English. A fresh install on an English or any other system therefore starts in English.
+ */
+export function getInitialLanguage(): Language {
+  try {
+    const stored = localStorage.getItem('world_lore_language');
+    if (stored === 'de' || stored === 'en') return stored;
+  } catch {
+    // no storage (tests, private modes): fall through to the system language
+  }
+  const system = typeof navigator !== 'undefined' ? navigator.language || '' : '';
+  return system.toLowerCase().startsWith('de') ? 'de' : 'en';
+}
+
 export const UI_TRANSLATIONS: Record<Language, Record<string, string>> = {
   de: {
     // General

@@ -6,6 +6,7 @@
 import React from 'react';
 import { AlertTriangle, RefreshCw, Copy, Check } from 'lucide-react';
 import Logo from './Logo';
+import { getInitialLanguage } from '../utils/i18n';
 
 interface ErrorBoundaryState {
   error: Error | null;
@@ -46,7 +47,7 @@ export class ErrorBoundary extends React.Component<{ children: React.ReactNode }
     const { error, copied } = this.state;
     if (!error) return this.props.children;
 
-    const isEn = (localStorage.getItem('world_lore_language') || 'de') === 'en';
+    const isEn = getInitialLanguage() === 'en';
 
     return (
       <div className="h-screen w-screen bg-surface-base text-ink flex items-center justify-center p-6 font-mono">

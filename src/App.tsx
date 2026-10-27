@@ -26,7 +26,7 @@ import { getStorage } from './utils/storage';
 // Map constructor for the whole module (which crashed the renderer once already).
 import { Bot, Sparkles, Globe, LayoutDashboard, Languages, Settings, Sun, Moon, HardDrive, Folder, FolderOpen, GitMerge, RefreshCw, ExternalLink, Clock, GitCommit, Book, BookOpen, PenTool, FileText, Image as ImageIcon, BarChart3, Network, ChevronUp } from 'lucide-react';
 import CollapseToggle from './components/ui/CollapseToggle';
-import { Language, getTypeTranslation, DEFAULT_TEMPLATES_LOCALIZED } from './utils/i18n';
+import { Language, getInitialLanguage, getTypeTranslation, DEFAULT_TEMPLATES_LOCALIZED } from './utils/i18n';
 import { setGeneratedTextLanguage } from './utils/markdown';
 import { useDialogState } from './hooks/useDialogState';
 import { useLooseMedia } from './hooks/useLooseMedia';
@@ -36,9 +36,7 @@ import { useAiConnectionStatus } from './hooks/useAiConnectionStatus';
 
 export default function App() {
   const [isGraphExpanded, setIsGraphExpanded] = useState(false);
-  const [language, setLanguage] = useState<Language>(() => {
-    return (localStorage.getItem('world_lore_language') as Language) || 'de';
-  });
+  const [language, setLanguage] = useState<Language>(getInitialLanguage);
   const [theme, setTheme] = useState<ThemeMode>(() => {
     return (localStorage.getItem('world_lore_theme') as ThemeMode) || 'dark';
   });
