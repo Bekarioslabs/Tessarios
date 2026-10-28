@@ -18,3 +18,23 @@ export function getLinkedEntities(imageUrl: string, entities: Record<string, Lor
     (e) => e.imageUrl === imageUrl || (e.galleryImageUrls || []).includes(imageUrl)
   );
 }
+
+/** The file name of an image URL; this is also what `![[…]]` embeds use to find it. */
+export function mediaFileName(imageUrl: string): string {
+  return imageUrl.split('/').pop() || imageUrl;
+}
+
+/**
+ * Gallery images of all entries, each URL once, in entry order. The media view lists
+ * main images and loose uploads itself; without these, an image that only sits in an
+ * entry's gallery would be invisible there.
+ */
+export function getGalleryImageUrls(entities: Record<string, LoreEntity>): string[] {
+  const urls = new Set<string>();
+  Object.values(entities).forEach((e) => {
+    (e.galleryImageUrls || []).forEach((u) => {
+      if (u && u.trim()) urls.add(u);
+    });
+  });
+  return [...urls];
+}

@@ -9,6 +9,7 @@ import { runVaultTests } from '../../../utils/__tests__/vaultManager.test';
 import { runExampleVaultTests } from '../../../utils/__tests__/exampleVault.test';
 import { runVaultAccessTests } from '../../../utils/__tests__/vaultAccess.test';
 import { runLanguageTests } from '../../../utils/__tests__/language.test';
+import { runMediaTests } from '../../../utils/__tests__/media.test';
 
 async function main() {
   console.log('🧪 Running Phase 1 Test Suite...');
@@ -35,7 +36,11 @@ async function main() {
   const res6 = await runLanguageTests();
   res6.log.forEach(l => console.log(l));
 
-  if (res1.success && res2.success && res3.success && res4.success && res5.success && res6.success) {
+  console.log('\n🧪 Running Media Test Suite...');
+  const res7 = await runMediaTests();
+  res7.log.forEach(l => console.log(l));
+
+  if (res1.success && res2.success && res3.success && res4.success && res5.success && res6.success && res7.success) {
     console.log('\n🎉 ALL PHASE 1, 2 & 3 ENGINE TESTS PASSED SUCCESSFULLY!');
     process.exit(0);
   } else {

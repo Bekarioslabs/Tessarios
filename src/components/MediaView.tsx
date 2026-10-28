@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import { LoreEntity, EntityType, LooseMediaAsset } from '../types';
 import { slugify } from '../utils/markdown';
 import { getTypeTranslation } from '../utils/i18n';
-import { getLinkedEntities } from '../utils/media';
+import { getLinkedEntities, getGalleryImageUrls, mediaFileName } from '../utils/media';
 import { getTypeIcon } from './EntityTypeBadge';
 import { ImageUploadModal, ImageUploadResult } from './ImageUploadModal';
 import { BaseModal } from './BaseModal';
@@ -139,6 +139,26 @@ export default function MediaView({
         imageUrl: e.imageUrl,
         isLoose: false,
         entity: e,
+        linkedEntities,
+      });
+    }
+  });
+
+  // 3. Images that only sit in an entry's gallery (neither a loose upload nor any entry's main image)
+  getGalleryImageUrls(entities).forEach((url) => {
+    if (seenImageUrls.has(url)) return;
+    seenImageUrls.add(url);
+
+    const linkedEntities = getLinkedEntities(url, entities);
+    const title = mediaFileName(url);
+    const matchesSearch = !term || title.toLowerCase().includes(term) || matchesLinkedEntities(linkedEntities);
+
+    if (matchesSearch) {
+      allItems.push({
+        id: `gallery-media-${url}`,
+        title,
+        imageUrl: url,
+        isLoose: false,
         linkedEntities,
       });
     }
