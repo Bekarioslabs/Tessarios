@@ -263,6 +263,7 @@ export default function AIAssistant({
         resolvedContext,
         userMessage: promptToSend,
         targetSectionHeader: requestTargetSection || undefined,
+        replyLanguage: language,
       });
 
       const provider = localStorage.getItem('aiProvider') || 'lmstudio';

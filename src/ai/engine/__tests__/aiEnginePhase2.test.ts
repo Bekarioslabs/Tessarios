@@ -93,6 +93,33 @@ export async function runPhase2Tests(): Promise<{ success: boolean; log: string[
     assert(composed.systemPrompt.includes('Beispiel Projektbibel'), 'Prompt composer includes Layer 3 PROJECT.md');
     assert(composed.systemPrompt.includes('Jonas Kontext'), 'Prompt composer includes the resolved context layer');
 
+    // The built-in layers are German; without an explicit reply language a model answers in German
+    // even when the author works in English (reported during testing).
+    assert(
+      !composed.systemPrompt.includes('RESPONSE LANGUAGE') && !composed.systemPrompt.includes('ANTWORTSPRACHE') && !composed.userPrompt.includes('Reply language'),
+      'no reply-language instruction is added unless the caller asks for one (structured replies stay untouched)'
+    );
+    const composedEn = composePrompt({
+      agentsPrompt: 'Tessarios Verfassung',
+      resolvedContext: 'Jonas Kontext',
+      userMessage: 'Give me new ideas for this character',
+      targetSectionHeader: 'Character Core',
+      replyLanguage: 'en',
+    });
+    assert(
+      composedEn.systemPrompt.trimEnd().endsWith('exactly as the author wrote them.') && composedEn.systemPrompt.includes('Always reply in English'),
+      'an English interface adds the English reply instruction as the last block of the system prompt'
+    );
+    assert(
+      composedEn.userPrompt.endsWith('[Reply language: English]') && composedEn.userPrompt.includes('[Zielabschnitt: ## Character Core]'),
+      'the reply language is also stated on the author message, after the target section line'
+    );
+    const composedDe = composePrompt({ agentsPrompt: 'Verfassung', resolvedContext: '', userMessage: 'Neue Ideen', replyLanguage: 'de' });
+    assert(
+      composedDe.systemPrompt.includes('Antworte immer auf Deutsch') && composedDe.userPrompt.endsWith('[Antwortsprache: Deutsch]'),
+      'a German interface asks for German replies'
+    );
+
     // 3. Test AIContextResolver's closed rule set. A rule that isn't part of it must
     // fail loudly instead of silently resolving to nothing — that silent-nothing is
     // exactly what let 4 of the 8 rules in character-hero.ai.md do nothing for months.

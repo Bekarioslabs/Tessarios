@@ -25,6 +25,12 @@ export interface ComposePromptParams {
   mode?: string;
   /** Overrides the creativity level that would otherwise come from `.ai.md`. */
   creativity?: 'low' | 'medium' | 'high';
+  /**
+   * The language the reply must be in. Without it the German built-in prompt layers pull every
+   * answer into German, even when the author works in English. Left out for structured replies
+   * (the tidy-up step), where section names must be returned exactly as given.
+   */
+  replyLanguage?: 'de' | 'en';
 }
 
 export interface ComposedPromptResult {
@@ -33,6 +39,24 @@ export interface ComposedPromptResult {
   recommendedMode: string;
   recommendedTemperature: number;
 }
+
+/**
+ * The prompt layers are written in German, and a local model follows the language it is
+ * instructed in. So the reply language is stated twice, in the system prompt and on the
+ * author's message, in the language it asks for.
+ */
+const REPLY_LANGUAGE = {
+  en: {
+    system:
+      '=== RESPONSE LANGUAGE ===\nAlways reply in English, even though the instructions above are written in German. This applies to every proposed text as well. Keep names and quoted passages exactly as the author wrote them.',
+    user: '[Reply language: English]',
+  },
+  de: {
+    system:
+      '=== ANTWORTSPRACHE ===\nAntworte immer auf Deutsch. Das gilt auch für jeden vorgeschlagenen Text. Namen und zitierte Stellen bleiben genau so, wie der Autor sie geschrieben hat.',
+    user: '[Antwortsprache: Deutsch]',
+  },
+} as const;
 
 /**
  * Maps AI Modes to semantic prompt instructions and recommended local LLM temperatures.
@@ -98,6 +122,7 @@ export function composePrompt(params: ComposePromptParams): ComposedPromptResult
     targetSectionHeader,
     mode: explicitMode,
     creativity: explicitCreativity,
+    replyLanguage,
   } = params;
 
   const sectionSpec = targetSectionHeader ? aiMdSpec?.sections[targetSectionHeader] : undefined;
@@ -139,11 +164,17 @@ ${modeConfig.instruction}`);
 ${resolvedContext.trim()}`);
   }
 
+  // Last in the system prompt, where it carries the most weight
+  if (replyLanguage) parts.push(REPLY_LANGUAGE[replyLanguage].system);
+
   let finalUserMessage = userMessage || '';
   if (targetSectionHeader) {
     finalUserMessage = `[Zielabschnitt: ## ${targetSectionHeader}]
 ${finalUserMessage}`;
   }
+  if (replyLanguage) finalUserMessage = `${finalUserMessage}
+
+${REPLY_LANGUAGE[replyLanguage].user}`;
 
   return {
     systemPrompt: parts.join('\n\n'),

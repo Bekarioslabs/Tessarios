@@ -260,6 +260,7 @@ export async function assembleRequest({
     resolvedContext: contextParts.join('\n\n'),
     userMessage: `${roleInstruction(role, language)}\n\n${userText}`,
     mode: role === 'writer' ? 'muse' : 'analytical',
+    replyLanguage: language,
   });
 
   const priorTurns = trimExchangesToBudget(exchanges).flatMap(ex => [
