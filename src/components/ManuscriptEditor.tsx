@@ -1160,6 +1160,7 @@ export default function ManuscriptEditor({
                   >
                     <Sparkles className="h-3.5 w-3.5" />
                     {language === 'en' ? 'AI' : 'KI'}
+                    <span className="text-[8px] font-bold uppercase px-1 py-px rounded border border-amber-900/50 bg-amber-950/30 text-amber-400">beta</span>
                   </button>
                 </div>
                 <div className="flex items-center gap-1.5">

@@ -648,6 +648,13 @@ export default function SettingsModal({
             {/* AI TAB */}
             {activeTab === 'ai' && (
               <div className="flex flex-col gap-6">
+                <div className="bg-amber-950/30 border border-amber-900/50 rounded-xl p-3 text-[11px] font-mono text-amber-200">
+                  <span className="font-bold text-amber-400">{language === 'en' ? 'Early beta. ' : 'Frühe Beta. '}</span>
+                  {language === 'en'
+                    ? 'The AI features can be wrong, invent details or ignore your notes, so read every proposal before you apply it. Nothing is written until you click, and the previous version of the file is saved first. Tessarios is a complete tool without the AI.'
+                    : 'Die KI-Funktionen können sich irren, Details erfinden oder deine Notizen ignorieren. Lies deshalb jeden Vorschlag, bevor du ihn übernimmst. Geschrieben wird erst nach deinem Klick, und die vorherige Dateifassung wird vorher gesichert. Tessarios ist auch ohne die KI ein vollständiges Werkzeug.'}
+                </div>
+
                 <div>
                   <h4 className="text-xs font-mono font-bold uppercase text-ink-heading tracking-wider flex items-center gap-2">
                     <Bot className="h-4 w-4 text-indigo-400" />
@@ -1044,8 +1051,8 @@ export default function SettingsModal({
                   </h4>
                   <p className="text-[11px] font-mono text-ink-muted mt-1">
                     {language === 'en'
-                      ? 'Final version: no updates, no support. Your notes are plain Markdown files in the vault folder you chose. The AI features are beta; the app works completely without them.'
-                      : 'Endgültige Version: keine Updates, kein Support. Deine Notizen sind einfache Markdown-Dateien im gewählten Tresor-Ordner. Die KI-Funktionen sind Beta; die App funktioniert vollständig ohne sie.'}
+                      ? 'Final version: no updates, no support. Your notes are plain Markdown files in the vault folder you chose. The AI features are an early beta, so use them with care and read every proposal before you apply it. Tessarios is already a complete tool without them.'
+                      : 'Endgültige Version: keine Updates, kein Support. Deine Notizen sind einfache Markdown-Dateien im gewählten Tresor-Ordner. Die KI-Funktionen sind eine frühe Beta: nutze sie mit Vorsicht und lies jeden Vorschlag, bevor du ihn übernimmst. Tessarios ist auch ohne sie schon ein vollständiges Werkzeug.'}
                   </p>
                 </div>
 

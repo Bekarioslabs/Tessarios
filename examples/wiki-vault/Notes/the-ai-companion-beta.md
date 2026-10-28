@@ -16,7 +16,9 @@ cssclasses:
 ---
 
 ## Content
-**The AI features are beta, and the app works completely without them.** They were tried with LM Studio and Ollama but not tested exhaustively; quality depends on your local model. Anyone who wants to improve them is welcome to fork the project.
+**The AI features are an early beta. Use them with care.** A local model can be wrong, invent details or ignore your notes, so read every proposal before you apply it. They were tried with LM Studio and Ollama but not tested exhaustively; quality depends on your model. Anyone who wants to improve them is welcome to fork the project.
+
+**Tessarios is already a complete tool without the AI.** Entries, manuscript, graph, maps, media and backups all work without any model. You can ignore this note and lose nothing.
 
 **The rule behind everything:** the app decides *where* something goes, the AI only supplies *what*. It never edits a file by itself. A reply arrives as a card showing the section as it is now next to the proposal, with Apply, Append and Discard. Until you click one, nothing has changed on disk. Fields in the frontmatter are yours alone: the AI neither fills nor changes them.
 

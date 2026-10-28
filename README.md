@@ -32,9 +32,14 @@ also build it yourself from the source (below) and compare.
 - No update check and no auto-update. The Chromium inside Electron stays at the version of
   the build and will age. The app loads no remote content, which limits the exposure, but do
   not use it to browse the web.
-- **The AI features are beta.** The app works completely without them. They were tried with
-  LM Studio and Ollama but not tested exhaustively; the quality depends on your local model.
-  Anyone who wants to improve them is welcome to fork.
+- **The AI features are an early beta. Use them with care.** A local model can be wrong, invent
+  details or ignore your notes, so read every proposal before you apply it. They were tried with
+  LM Studio and Ollama but not tested exhaustively; the quality depends on your model. Nothing is
+  written without your click and the previous file version is saved first, but that is a safety
+  net, not a guarantee. Anyone who wants to improve them is welcome to fork.
+- **Tessarios is a complete tool without the AI.** The vault of typed entries, the manuscript
+  workspace, the relationship graph, maps, media, search and the version history all work without
+  any model.
 - German and English interface only. The files are Obsidian-compatible, but Obsidian plugins
   and Canvas are not supported.
 - Keep your own backups. The app saves older versions under `.tessarios/backups/`, which is a
@@ -46,7 +51,7 @@ also build it yourself from the source (below) and compare.
   storylines, maps and more, each from a template with typed fields (dropdowns, links to
   other entries) and fixed sections. German and English templates and interface.
 - **Manuscript workspace** — Book → Chapter → Scene with status and word counts.
-- **Local AI (beta), proposals only** — a dossier chat aimed at one section at a time, a writing
+- **Local AI (early beta), proposals only** — a dossier chat aimed at one section at a time, a writing
   partner / editor beside each scene, and a "tidy up" step that sorts Open Questions into
   better-fitting sections. Every write is a before/after proposal you confirm, and the
   previous file version is saved first. See [`docs/ki-spezifikation.md`](docs/ki-spezifikation.md)

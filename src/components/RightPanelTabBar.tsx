@@ -38,6 +38,7 @@ export const RightPanelTabBar: React.FC<RightPanelTabBarProps> = ({
         >
           <Bot className="h-3 w-3" />
           <span>{language === 'en' ? 'AI Chronicler' : 'KI-Chronist'}</span>
+          <span className="text-[8px] font-bold uppercase px-1 py-px rounded border border-amber-900/50 bg-amber-950/30 text-amber-400">beta</span>
         </button>
         <button
           onClick={() => onTabChange('media')}
