@@ -18,7 +18,7 @@ import { ImageUploadModal, ImageUploadResult } from './ImageUploadModal';
 import { Language, getTypeTranslation as i18nGetTypeTranslation, getSuggestedTags as i18nGetSuggestedTags, DEFAULT_TEMPLATES_LOCALIZED } from '../utils/i18n';
 import { getTypeColor, getTypeIcon } from './EntityTypeBadge';
 import CollapseToggle from './ui/CollapseToggle';
-import { getManuscriptHierarchy } from '../utils/manuscript';
+import { getManuscriptHierarchy, statusLabel, StatusType } from '../utils/manuscript';
 import {
   Edit3,
   Eye,
@@ -550,7 +550,7 @@ export default function Editor({
         <div className="flex items-baseline justify-between text-xs font-mono">
           <span className="text-ink-bright font-bold">
             {stats.currentWords.toLocaleString(language === 'en' ? 'en-US' : 'de-DE')}{' '}
-            <span className="text-ink-muted font-normal">/ {stats.targetWords.toLocaleString(language === 'en' ? 'en-US' : 'de-DE')} Wörter</span>
+            <span className="text-ink-muted font-normal">/ {stats.targetWords.toLocaleString(language === 'en' ? 'en-US' : 'de-DE')} {language === 'en' ? 'words' : 'Wörter'}</span>
           </span>
           <span className="text-[9px] font-mono text-ink-secondary">
             {stats.infoText}
@@ -843,7 +843,7 @@ export default function Editor({
                 <div className="relative w-44 h-44 sm:w-48 sm:h-48 aspect-square rounded-xl overflow-hidden border border-line bg-surface-base group shadow-lg shrink-0">
                   <img
                     src={entity.imageUrl}
-                    alt="Profile Portrait"
+                    alt={language === 'en' ? 'Portrait' : 'Porträt'}
                     className="w-full h-full object-cover cursor-pointer"
                     referrerPolicy="no-referrer"
                     onClick={() => {
@@ -1099,7 +1099,7 @@ export default function Editor({
                       const statusPresets = ['Planung', 'Entwurf', 'In Überarbeitung', 'Korrektur', 'Abgeschlossen', 'Pausiert'];
 
                       // Calculate auto status for Book or Chapter
-                      let autoStatus = 'Entwurf';
+                      let autoStatus: StatusType = 'Entwurf';
                       let statusDetail = '';
                       if (isStatusKey && isBookOrChapter) {
                         const hierarchy = getManuscriptHierarchy(entities);
@@ -1154,7 +1154,7 @@ export default function Editor({
                                 >
                                   <span className="flex items-center gap-1.5">
                                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                                    <span>{autoStatus}</span>
+                                    <span>{statusLabel(autoStatus, language)}</span>
                                   </span>
                                   <span className="text-[9px] text-emerald-500 font-mono font-normal">
                                     {statusDetail || 'AUTO'}

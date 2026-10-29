@@ -802,7 +802,7 @@ export default function MapEditor({
             {activeImageSrc ? (
               <img
                 src={activeImageSrc}
-                alt="World Map"
+                alt={language === 'en' ? 'World map' : 'Weltkarte'}
                 onLoad={(e) => {
                   const img = e.currentTarget;
                   if (img.naturalWidth && img.naturalHeight) {

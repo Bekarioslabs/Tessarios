@@ -219,7 +219,7 @@ export default function App() {
               <div className="flex items-center gap-1.5 text-emerald-400 font-bold">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <Folder className="h-3.5 w-3.5" />
-                <span className="truncate max-w-[140px] sm:max-w-[200px]">ORDNER: {localVaultName}</span>
+                <span className="truncate max-w-[140px] sm:max-w-[200px]">{language === 'en' ? 'FOLDER' : 'ORDNER'}: {localVaultName}</span>
               </div>
             ) : (
               <div className="flex items-center gap-1.5 text-emerald-400 font-semibold">

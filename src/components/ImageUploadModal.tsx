@@ -172,7 +172,7 @@ export const ImageUploadModal: React.FC<ImageUploadModalProps> = ({
         <div className="flex gap-3 items-center bg-surface-base p-2 rounded-lg border border-line">
           <img
             src={imageDataUrl}
-            alt="Preview"
+            alt={language === 'en' ? 'Preview' : 'Vorschau'}
             className="w-16 h-16 object-cover rounded border border-line flex-shrink-0"
           />
           <div className="flex flex-col text-[11px] font-mono text-ink-secondary overflow-hidden flex-1">

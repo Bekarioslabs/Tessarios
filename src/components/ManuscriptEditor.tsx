@@ -586,7 +586,7 @@ export default function ManuscriptEditor({
           </div>
           <div className="flex items-center gap-2">
             <h2 className="text-xs font-bold font-mono tracking-wider text-ink-bright uppercase">
-              Manuskript
+              {language === 'en' ? 'Manuscript' : 'Manuskript'}
             </h2>
             <span className="text-xs bg-surface-hover/90 border border-line-strong text-indigo-300 font-mono px-2.5 py-0.5 rounded-full font-bold">
               {activeBookItem?.title || (language === 'en' ? 'Book' : 'Buch')}
@@ -882,7 +882,7 @@ export default function ManuscriptEditor({
                       <span>{activeChapterItem?.title || (language === 'en' ? 'Chapter' : 'Kapitel')}</span>
                       <span>•</span>
                       <span className="text-indigo-300 font-bold">
-                        {countWords(extractManuscriptText(activeSceneEntity.content))} Wörter
+                        {countWords(extractManuscriptText(activeSceneEntity.content))} {language === 'en' ? 'words' : 'Wörter'}
                       </span>
                     </div>
                     <input
@@ -1076,7 +1076,7 @@ export default function ManuscriptEditor({
                     <section key={ch.id} className="flex flex-col gap-4 border-b border-line/80 pb-10 last:border-b-0">
                       <div className="flex items-center justify-between border-b border-line/80 pb-3">
                         <h2 className="text-2xl font-bold text-ink-heading tracking-tight">
-                          Kapitel {chIdx + 1}: {ch.title}
+                          {language === 'en' ? 'Chapter' : 'Kapitel'} {chIdx + 1}: {ch.title}
                         </h2>
                         <span className="text-xs font-mono text-ink-muted">{ch.totalWordCount} w</span>
                       </div>

@@ -30,6 +30,11 @@ const STATUS_STORED: Record<StatusType, Record<ManuscriptLanguage, string>> = {
   'Fertig': { de: 'Fertig', en: 'Completed' },
 };
 
+/** The status as the interface shows it; the internal names are German. */
+export function statusLabel(status: StatusType, uiLanguage: ManuscriptLanguage): string {
+  return STATUS_STORED[status][uiLanguage];
+}
+
 /** Maps any recognised spelling to the internal status. Empty or unknown means a draft. */
 export function normalizeStatus(raw?: string | null): StatusType {
   const value = (raw || '').trim().toLowerCase();

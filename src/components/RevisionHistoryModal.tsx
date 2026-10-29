@@ -273,8 +273,8 @@ export function RevisionHistoryModal({
                   {viewMode === 'preview' ? (
                     <div className="space-y-4">
                       <div className="p-3 bg-surface-card border border-line/80 rounded-xl text-xs font-mono text-ink-secondary flex items-center justify-between">
-                        <span>Sicherung vom: {formatDate(selectedRevision.timestamp)}</span>
-                        <span>{selectedRevision.charCount} Zeichen</span>
+                        <span>{language === 'en' ? 'Backup from' : 'Sicherung vom'}: {formatDate(selectedRevision.timestamp)}</span>
+                        <span>{selectedRevision.charCount} {language === 'en' ? 'characters' : 'Zeichen'}</span>
                       </div>
 
                       <div className="p-5 bg-surface-card border border-line rounded-xl font-mono text-xs text-ink-bright whitespace-pre-wrap leading-relaxed">
@@ -290,10 +290,10 @@ export function RevisionHistoryModal({
                       {/* Left: Selected Revision */}
                       <div className="flex flex-col gap-2">
                         <div className="text-xs font-mono font-bold text-amber-400 flex items-center gap-1.5">
-                          <span>Sicherung ({formatDate(selectedRevision.timestamp)})</span>
+                          <span>{language === 'en' ? 'Backup' : 'Sicherung'} ({formatDate(selectedRevision.timestamp)})</span>
                         </div>
                         <div className="flex-1 p-4 bg-surface-card border border-amber-900/40 rounded-xl font-mono text-xs text-ink whitespace-pre-wrap overflow-y-auto leading-relaxed">
-                          {selectedRevision.content || '(Leer)'}
+                          {selectedRevision.content || (language === 'en' ? '(Empty)' : '(Leer)')}
                         </div>
                       </div>
 
@@ -303,7 +303,7 @@ export function RevisionHistoryModal({
                           <span>{language === 'en' ? 'Current Live Version' : 'Aktuelle Version'}</span>
                         </div>
                         <div className="flex-1 p-4 bg-surface-card border border-indigo-900/40 rounded-xl font-mono text-xs text-ink whitespace-pre-wrap overflow-y-auto leading-relaxed">
-                          {entity.content || '(Leer)'}
+                          {entity.content || (language === 'en' ? '(Empty)' : '(Leer)')}
                         </div>
                       </div>
                     </div>
