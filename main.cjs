@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-const { app, BrowserWindow, ipcMain, dialog, protocol, net, session } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, protocol, net, session, shell } = require('electron');
 const path = require('path');
 const url = require('url');
 const fs = require('fs').promises;
@@ -254,6 +254,27 @@ async function startAppLoad() {
   );
 }
 
+/** The pages this window may show: the built app, the startup shell, and in development the
+ *  Vite server. Anything else is a foreign page and would run next to the vault bridge. */
+function isAppUrl(target) {
+  try {
+    const parsed = new URL(target);
+    if (parsed.protocol === 'file:') {
+      const norm = (p) => (process.platform === 'win32' ? path.normalize(p).toLowerCase() : path.normalize(p));
+      const file = norm(url.fileURLToPath(parsed));
+      return file === norm(path.join(__dirname, 'dist', 'index.html')) || file === norm(SHELL_PATH);
+    }
+    return isDev && DEV_SERVER_CANDIDATES.some((candidate) => new URL(candidate).origin === parsed.origin);
+  } catch {
+    return false;
+  }
+}
+
+/** Web and mail links from entries go to the user's own browser or mail program. */
+function openInBrowser(target) {
+  if (/^(https?:|mailto:)/i.test(target)) shell.openExternal(target).catch(() => {});
+}
+
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1200,
@@ -268,6 +289,19 @@ function createWindow() {
   });
 
   const wc = mainWindow.webContents;
+
+  // A link in an entry must never load inside the app: a vault from someone else could
+  // otherwise put a foreign page (or a scripted SVG) next to the vault bridge. New windows
+  // are refused, navigation away from the app is stopped, and web links open in the browser.
+  wc.setWindowOpenHandler(({ url: target }) => {
+    openInBrowser(target);
+    return { action: 'deny' };
+  });
+  wc.on('will-navigate', (event, target) => {
+    if (isAppUrl(target)) return;
+    event.preventDefault();
+    openInBrowser(target);
+  });
 
   wc.on('did-finish-load', () => {
     const url = wc.getURL();
@@ -326,6 +360,14 @@ app.whenReady().then(() => {
       });
     });
   }
+
+  // The app needs no camera, microphone, location or notifications. Only writing to the
+  // clipboard is used (copy buttons), so everything else is refused.
+  const allowedPermission = (permission) => permission === 'clipboard-sanitized-write';
+  session.defaultSession.setPermissionRequestHandler((_wc, permission, callback) => {
+    callback(allowedPermission(permission));
+  });
+  session.defaultSession.setPermissionCheckHandler((_wc, permission) => allowedPermission(permission));
 
   protocol.handle('vault', async (request) => {
     if (!activeVaultPath) return new Response('Vault not initialized', { status: 400 });
