@@ -111,7 +111,13 @@ const files = sourceFiles();
 // line of its own inside a JSX element (`Tabelle einfügen`), and the dialog texts a hook
 // hands to the UI (useVaultStorage.ts). All of those shipped untranslated.
 //
-// Three kinds of place are checked. A line can opt out with `// i18n-ok`.
+// The second version still missed text next to an expression ("ORDNER: {name}",
+// "{count} Wörter"), words written in capitals, and "Manuskript", "Kapitel 1:",
+// "Sicherung vom:" and "(Leer)", which shipped in the English interface. Expressions are
+// now blanked out before the text is read, the word list ignores case, and a German
+// fallback string after `||` counts as visible text.
+//
+// Four kinds of place are checked. A line can opt out with `// i18n-ok`.
 // ---------------------------------------------------------------------------
 {
   // Words that are German and not also an everyday English or technical word. Not a
@@ -124,13 +130,23 @@ const files = sourceFiles();
       'Karte', 'Bereich', 'Bereiche', 'Etage', 'Markierung', 'Eintrag', 'Einträge', 'Datei', 'Dateien', 'Ordner', 'Bild',
       'Fehler', 'Zurück', 'Weiter', 'Übernehmen', 'Verwerfen', 'Anhängen', 'Zeichen', 'anwenden', 'Notizen',
       'oder', 'und', 'nicht', 'wird', 'wurde', 'wurden', 'für', 'mit', 'deine', 'deiner', 'dein', 'Dein',
-    ].join('|') + ')(?![\\p{L}])', 'u');
+      'Manuskript', 'Kapitel', 'Szene', 'Szenen', 'Sicherung', 'Leer', 'vom',
+    ].join('|') + ')(?![\\p{L}])', 'iu');
   const UMLAUT = /[äöüßÄÖÜ]/;
   const isGerman = (t) => UMLAUT.test(t) || GERMAN_WORDS.test(t);
   // "Schließen / Close" carries both languages in one string.
   const bothLanguages = (t) => /[äöüßÄÖÜ][^"<>]*\/\s*[A-Z][a-z]+/.test(t);
+  // `{…}` expressions blanked out, innermost first, so the text around them can be read.
+  const withoutExpressions = (s) => {
+    let prev;
+    do { prev = s; s = s.replace(/\{[^{}]*\}/g, ' '); } while (s !== prev);
+    return s;
+  };
+  // A language switch only covers German text if it is still open around it: one closed
+  // inside `{…}` on a neighbouring line (a translated title, a locale) translates nothing else.
   const languageNearby = (ls, i, back = 4, fwd = 1) =>
-    /language\s*===|getTranslation|getTypeTranslation|labelDe|descDe|\btr\(|isEn\b/.test(ls.slice(Math.max(0, i - back), i + fwd + 1).join(' '));
+    /language\s*===|getTranslation|getTypeTranslation|labelDe|descDe|\btr\(|isEn\b/.test(
+      ls.slice(Math.max(0, i - back), i + fwd + 1).map(withoutExpressions).join(' '));
 
   const hits = [];
   for (const f of files) {
@@ -150,14 +166,21 @@ const files = sourceFiles();
         if (!languageNearby(ls, i)) {
           const attr = line.match(/\b(?:title|placeholder|aria-label|alt)="([^"]*)"/);
           if (attr && isGerman(attr[1])) hit = attr[0];
-          const inline = line.match(/>([^<>{}]+)</);
-          if (!hit && inline && isGerman(inline[1])) hit = inline[0];
+          for (const inline of withoutExpressions(line).matchAll(/>([^<>]+)</g)) {
+            if (!hit && isGerman(inline[1])) hit = inline[0];
+          }
+          // (3) a German fallback shown when a value is empty: {content || '(Leer)'}
+          const fallback = line.match(/\|\|\s*(['"`])([^'"`]+)\1\s*\}/);
+          if (!hit && fallback && isGerman(fallback[2])) hit = fallback[0];
         }
-        // (3) a JSX child on a line of its own: bare text right after a line that ends a tag
-        if (!hit && /^[A-ZÄÖÜ][A-Za-zäöüÄÖÜß ,.:!?&()/-]*$/.test(t) && t.split(/\s+/).length <= 8) {
+        // (4) a JSX child on a line of its own, possibly next to an expression, right after a
+        // line that ends a tag. Checked even with a language switch nearby: text written
+        // straight into the markup is shown in both languages.
+        const bare = withoutExpressions(t).trim();
+        if (!hit && bare && /^[A-ZÄÖÜa-zäöüß][A-Za-zäöüÄÖÜß ,.:!?&()/-]*$/.test(bare) && bare.split(/\s+/).length <= 8) {
           let p = i - 1;
           while (p >= 0 && !ls[p].trim()) p--;
-          if (p >= 0 && /[^=]>\s*$/.test(ls[p]) && !/=>\s*$/.test(ls[p]) && isGerman(t)) hit = t;
+          if (p >= 0 && /[^=]>\s*$/.test(ls[p]) && !/=>\s*$/.test(ls[p]) && isGerman(bare)) hit = bare;
         }
       }
 
