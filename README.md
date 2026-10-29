@@ -6,15 +6,25 @@ Everything lives as plain Markdown files with YAML frontmatter in a folder on yo
 (a *vault*, Obsidian-compatible). An optional AI companion runs on a local model, proposes
 text as a before/after card, and never changes a file until you click.
 
-> **Tessarios is finished.** This is the final version: no updates, no bug fixes, no
-> support; issues and pull requests are not accepted. The source is public under the AGPL so
-> anyone can use, study and continue it. Forks are welcome.
+> **Project status: archived, no longer maintained.** Tessarios is a free, open-source
+> project provided as-is. Active development has ended. No future updates, bug fixes,
+> compatibility updates or technical support are planned; issues and pull requests are not
+> accepted. The source is public under the AGPL so anyone can use, study and continue it.
+> Forks are welcome.
+
+![An entry: dossier fields on the left, the text in the middle, the AI panel on the right](docs/screenshots/dossier.webp)
+
+| | |
+|---|---|
+| ![The relationship graph of the example world](docs/screenshots/relationship-graph.webp) | ![The map editor with pins linked to entries](docs/screenshots/map.webp) |
+| ![The manuscript workspace: chapters and scenes, the scene text, the writing partner](docs/screenshots/manuscript.webp) | |
 
 ## Download and run
 
 Download `Tessarios-1.0.0-win.zip` from the repository's Releases page, unzip it anywhere
 and start `Tessarios.exe`. Nothing is installed, and you do not need Node.js or npm. It is
-a 64-bit Windows 10/11 build.
+a 64-bit Windows 10/11 build. The release page lists the zip's SHA-256, so you can check
+that your download is the published file.
 
 The zip also contains a folder `Tessarios Wiki`: a small wiki written as a vault, with one
 example for every entry type. On the start screen, **Open the Tessarios Wiki** copies it to
@@ -42,8 +52,27 @@ also build it yourself from the source (below) and compare.
   any model.
 - German and English interface only. The files are Obsidian-compatible, but Obsidian plugins
   and Canvas are not supported.
-- Keep your own backups. The app saves older versions under `.tessarios/backups/`, which is a
-  safety net and not a substitute.
+
+## Your data
+
+- **Plain files, no lock-in.** A vault is an ordinary folder you choose. Every entry is a
+  Markdown file with YAML frontmatter, and images are ordinary files in `assets/`. You can read
+  and edit them with any text editor, or open the folder in Obsidian, without Tessarios. There
+  is no database, no account and no server.
+- **What the app adds to the vault.** A folder `.tessarios/` holds the previous version of an
+  entry before every change and every delete (`backups/`), up to five ZIP snapshots of the whole
+  vault (`full-backups/`, made before you pick another vault folder in Settings, or with
+  *Create ZIP Backup Now*), unfinished AI chat drafts and optional prompt files. Obsidian users can ignore it.
+- **Outside the vault.** Settings and the list of recent vaults are stored in
+  `%APPDATA%\react-example\` (the name comes from the project's early days). To remove
+  Tessarios completely, delete the unzipped folder and that one; your vaults stay where they are.
+- **Network.** The app sends nothing on its own. Only when you use the AI does it send the text
+  that request needs (the entry or scene and its context) to the AI address set in Settings,
+  which by default is your own computer (LM Studio or Ollama). If you enter the address of
+  another machine, that text leaves your computer.
+- **Back up the folder yourself.** The versions in `.tessarios/` sit in the same folder as your
+  entries and are lost with it. Copy the vault folder to another drive regularly. A book's
+  manuscript can also be exported as a single Markdown file (*Export (.md)*).
 
 ## What it does
 
@@ -82,6 +111,9 @@ npm run check           # type check, production build, repo rules, tests
 npm run electron:build  # production build and Windows zip in release/ (electron-builder)
 ```
 
+Dependency versions are pinned in `package-lock.json`. A rebuild is not byte-identical to the
+release zip (file timestamps differ), so compare behaviour, not checksums.
+
 `npm run check` must pass before a change is considered done; the rules it enforces are
 explained in [`AGENTS.md`](AGENTS.md).
 
@@ -105,8 +137,8 @@ later** ([`LICENSE`](LICENSE)). Copyright (C) 2026 Beka Gwarliani (Bekarioslabs)
 In short: you may use, study, change and share it, including for paid work. If you
 distribute it or run a modified version as a network service, you must offer the source of
 your version under the same licence. Forks should use a different name and logo. The example
-images in `examples/wiki-vault/assets/` (generated with ChatGPT and Gemini) are not covered by the
-AGPL.
+images in `examples/wiki-vault/assets/` (generated with ChatGPT and Gemini) and the screenshots
+in `docs/screenshots/` are not covered by the AGPL.
 
 Third-party components and their licences are listed in
 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md), generated by `npm run licenses`;
@@ -114,3 +146,15 @@ regenerate it whenever dependencies change. The app makes no network requests of
 (fonts are bundled, there is no telemetry); the only traffic is to the AI address you
 configure. The project is finished and takes no contributions: see
 [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+## Support the creator
+
+Tessarios is free. If you want to say thanks, you can leave a
+[voluntary tip](https://buy.stripe.com/cNicN7b8KejV4Z39WtbjW00). It is not needed to download or
+use the app, and nothing is given in return: no products, services, updates or support.
+
+## Bekarios Labs
+
+[bekarioslabs.de](https://bekarioslabs.de) ·
+[Legal notice (Impressum)](https://bekarioslabs.de/impressum) ·
+[Privacy policy (Datenschutzerklärung)](https://bekarioslabs.de/datenschutz)
