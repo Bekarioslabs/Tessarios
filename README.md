@@ -1,6 +1,13 @@
-# Tessarios
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="public/logo.svg">
+    <img src="public/logo-light.svg" alt="Tessarios logo" width="128">
+  </picture>
+</p>
 
-A local desktop app for building story worlds and writing the book inside them.
+<h1 align="center">Tessarios</h1>
+
+<p align="center">A local desktop app for building story worlds and writing the book inside them.</p>
 
 Everything lives as plain Markdown files with YAML frontmatter in a folder on your disk
 (a *vault*, Obsidian-compatible). An optional AI companion runs on a local model, proposes
